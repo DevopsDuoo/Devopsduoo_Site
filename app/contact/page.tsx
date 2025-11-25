@@ -59,7 +59,7 @@ export default function ContactPage() {
       }
       if (!formData.from_email.trim()) {
         errors.from_email = 'Email is required';
-      } else if (-m[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.from_email)) {
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.from_email)) {
         errors.from_email = 'Please enter a valid email';
       }
     } else if (step === 3) {
@@ -557,7 +557,7 @@ export default function ContactPage() {
             </p>
             <div className="w-full rounded-xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=#git commit -m "PD-134: upgrade request for psteam2 to the build NV_8313"m18#git commit -m "PD-134: upgrade request for psteam2 to the build NV_8313"m12#git commit -m "PD-134: upgrade request for psteam2 to the build NV_8313"m3#git commit -m "PD-134: upgrade request for psteam2 to the build NV_8313"d3783.4774465194323git commit -m "PD-134: upgrade request for psteam2 to the build NV_8313"d73.80583357540657git push -u origin feature/acloud/PD-136d18.507314369578705git commit -m "PD-134: upgrade request for psteam2 to the build NV_8313"m3#git commit -m "PD-134: upgrade request for psteam2 to the build NV_8313"f0git commit -m "PD-134: upgrade request for psteam2 to the build NV_8313"f0git push -u origin feature/acloud/PD-136f0git push -u origin feature/acloud/PD-136m2#git commit -m "PD-134: upgrade request for psteam2 to the build NV_8313"i1024git commit -m "PD-134: upgrade request for psteam2 to the build NV_8313"i768kubectl get all -n godrejagrovet-testf13.1git push -u origin feature/acloud/PD-136m3#git commit -m "PD-134: upgrade request for psteam2 to the build NV_8313"m2#git commit -m "PD-134: upgrade request for psteam2 to the build NV_8313"s0x3bc2bfb993c25c11%3A0x7d1074be1df11b76git commit -m "PD-134: upgrade request for psteam2 to the build NV_8313"sShivneri%20Plaza%2C%20Gujrat%20Colony%2C%20Kothrud%2C%20Pune%2C%20Maharashtra%20411038kubectl describe service/godrejagrovet-test-svce0git push -u origin feature/acloud/PD-136m2#git commit -m "PD-134: upgrade request for psteam2 to the build NV_8313"sengit commit -m "PD-134: upgrade request for psteam2 to the build NV_8313"sinkubectl get all -n godrejagrovet-testv1764008318083kubectl describe service/godrejagrovet-test-svcm2#git commit -m "PD-134: upgrade request for psteam2 to the build NV_8313"sengit commit -m "PD-134: upgrade request for psteam2 to the build NV_8313"sin" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.4774465194323!2d73.80583357540657!3d18.507314369578705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bfb993c25c11%3A0x7d1074be1df11b76!2sShivneri%20Plaza%2C%20Gujrat%20Colony%2C%20Kothrud%2C%20Pune%2C%20Maharashtra%20411038!5e0!3m2!1sen!2sin!4v1764008318083!5m2!1sen!2sin" 
                 width="100%" 
                 height="450" 
                 style={{ border: 0 }}

@@ -1,7 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import { useState } from 'react';
 import { 
   FaCloud, 
   FaCodeBranch, 
@@ -9,8 +10,6 @@ import {
   FaChartLine, 
   FaShieldAlt,
   FaRocket,
-  FaDocker,
-  FaAws,
   FaGraduationCap,
   FaUserTie,
   FaLightbulb,
@@ -20,18 +19,30 @@ import {
   FaCertificate,
   FaHandshake,
   FaClipboardCheck,
-  FaUsers
+  FaUsers,
+  FaCheck,
+  FaChevronDown,
+  FaChevronRight,
+  FaPlay,
+  FaCode,
+  FaCheckCircle,
+  FaCog,
+  FaArrowRight
 } from 'react-icons/fa';
 import { 
   SiKubernetes, 
   SiTerraform, 
   SiAnsible, 
   SiPrometheus,
-  SiJenkins,
-  SiGitlab
 } from 'react-icons/si';
 
 export default function ServicesPage() {
+  const [expandedService, setExpandedService] = useState<number | null>(null);
+  const [pipelineStage, setPipelineStage] = useState<number>(0);
+  const [consultationStep, setConsultationStep] = useState<number>(0);
+  const [selectedProgram, setSelectedProgram] = useState<number | null>(null);
+  const [revealedItems, setRevealedItems] = useState<{[key: number]: number}>({});
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -58,7 +69,8 @@ export default function ServicesPage() {
     {
       icon: <FaCloud className="text-5xl" />,
       title: 'Cloud Infrastructure',
-      description: 'Design, implement, and manage scalable cloud solutions on AWS, Azure, and Google Cloud Platform.',
+      shortDesc: 'Design, implement, and manage scalable cloud solutions.',
+      description: 'Comprehensive cloud infrastructure solutions on AWS, Azure, and Google Cloud Platform with focus on scalability, security, and cost optimization.',
       features: [
         'Multi-cloud architecture design',
         'Cloud migration strategies',
@@ -66,12 +78,14 @@ export default function ServicesPage() {
         'Cost management & optimization',
         'Disaster recovery planning'
       ],
-      gradient: 'from-blue-500 to-cyan-500'
+      gradient: 'from-blue-500 to-cyan-500',
+      details: 'We help organizations leverage cloud technologies to build resilient, scalable infrastructure that grows with your business needs.'
     },
     {
       icon: <FaCodeBranch className="text-5xl" />,
       title: 'CI/CD Pipeline',
-      description: 'Build robust continuous integration and deployment pipelines for faster, reliable software delivery.',
+      shortDesc: 'Build robust continuous integration and deployment pipelines.',
+      description: 'Automated build, test, and deployment workflows for faster, more reliable software delivery across your entire development lifecycle.',
       features: [
         'Automated build & test workflows',
         'GitOps implementation',
@@ -79,12 +93,14 @@ export default function ServicesPage() {
         'Deployment automation',
         'Pipeline security & compliance'
       ],
-      gradient: 'from-purple-500 to-pink-500'
+      gradient: 'from-purple-500 to-pink-500',
+      details: 'Accelerate your release cycles with intelligent automation that reduces errors and increases development velocity.'
     },
     {
       icon: <SiKubernetes className="text-5xl" />,
       title: 'Container Orchestration',
-      description: 'Master container management with Docker and Kubernetes for efficient application deployment.',
+      shortDesc: 'Master container management with Docker and Kubernetes.',
+      description: 'Expert container orchestration solutions for efficient application deployment, scaling, and management in production environments.',
       features: [
         'Kubernetes cluster setup',
         'Helm charts & package management',
@@ -92,12 +108,14 @@ export default function ServicesPage() {
         'Auto-scaling & load balancing',
         'Container security best practices'
       ],
-      gradient: 'from-indigo-500 to-blue-500'
+      gradient: 'from-indigo-500 to-blue-500',
+      details: 'Deploy and manage containerized applications at scale with enterprise-grade Kubernetes solutions.'
     },
     {
       icon: <FaChartLine className="text-5xl" />,
       title: 'Monitoring & Logging',
-      description: 'Comprehensive observability solutions for system reliability and performance optimization.',
+      shortDesc: 'Comprehensive observability solutions for system reliability.',
+      description: 'End-to-end monitoring, logging, and alerting solutions to ensure optimal performance and rapid incident response.',
       features: [
         'Prometheus & Grafana setup',
         'ELK stack implementation',
@@ -105,12 +123,14 @@ export default function ServicesPage() {
         'APM integration',
         'Log aggregation & analysis'
       ],
-      gradient: 'from-green-500 to-teal-500'
+      gradient: 'from-green-500 to-teal-500',
+      details: 'Gain complete visibility into your systems with real-time monitoring and intelligent alerting.'
     },
     {
       icon: <SiTerraform className="text-5xl" />,
       title: 'Infrastructure as Code',
-      description: 'Automate infrastructure provisioning with Terraform, Ansible, and CloudFormation.',
+      shortDesc: 'Automate infrastructure provisioning with IaC tools.',
+      description: 'Version-controlled infrastructure automation using Terraform, Ansible, and CloudFormation for consistent, repeatable deployments.',
       features: [
         'IaC best practices',
         'Multi-cloud provisioning',
@@ -118,12 +138,14 @@ export default function ServicesPage() {
         'State management',
         'Module development'
       ],
-      gradient: 'from-violet-500 to-purple-500'
+      gradient: 'from-violet-500 to-purple-500',
+      details: 'Transform infrastructure management with code-based automation that ensures consistency and reduces manual errors.'
     },
     {
       icon: <FaShieldAlt className="text-5xl" />,
       title: 'Security & Compliance',
-      description: 'Implement DevSecOps practices to ensure security throughout the development lifecycle.',
+      shortDesc: 'Implement DevSecOps practices for secure development.',
+      description: 'Integrated security practices throughout the development lifecycle with automated scanning, compliance checks, and vulnerability management.',
       features: [
         'Security scanning & auditing',
         'Compliance automation',
@@ -131,52 +153,48 @@ export default function ServicesPage() {
         'Vulnerability assessment',
         'Zero-trust architecture'
       ],
-      gradient: 'from-red-500 to-orange-500'
+      gradient: 'from-red-500 to-orange-500',
+      details: 'Build security into every stage of your DevOps pipeline with automated testing and continuous compliance monitoring.'
     },
   ];
 
-  const consultationServices = [
+  // Pipeline stages for animation
+  const pipelineStages = [
+    { name: 'Code', icon: <FaCode />, color: 'blue', description: 'Developers push code to repository' },
+    { name: 'Build', icon: <FaCog />, color: 'purple', description: 'Code is compiled and built' },
+    { name: 'Test', icon: <FaCheckCircle />, color: 'green', description: 'Automated tests run' },
+    { name: 'Deploy', icon: <FaRocket />, color: 'orange', description: 'Application deployed to production' },
+    { name: 'Monitor', icon: <FaChartLine />, color: 'teal', description: 'System performance tracked' },
+  ];
+
+  const consultationSteps = [
     {
       icon: <FaUserTie className="text-4xl" />,
-      title: 'Career Consultation',
-      description: 'Get personalized guidance to accelerate your DevOps career growth.',
-      details: [
-        'Resume & portfolio review',
-        'Interview preparation & mock interviews',
-        'Career roadmap planning',
-        'Salary negotiation strategies',
-        'LinkedIn profile optimization',
-        'Job search strategies & networking tips'
-      ],
+      title: 'Initial Consultation',
+      description: 'Free 30-minute discovery call to understand your needs',
+      details: ['Discuss your goals', 'Assess current situation', 'Identify challenges', 'Define success metrics'],
       color: 'from-blue-600 to-indigo-600'
     },
     {
       icon: <FaLightbulb className="text-4xl" />,
-      title: 'Technical Consultation',
-      description: 'Expert advice on DevOps architecture, tooling, and best practices.',
-      details: [
-        'Architecture design reviews',
-        'Tool selection & evaluation',
-        'Process optimization',
-        'Team structure & workflows',
-        'Cost optimization strategies',
-        'Migration planning & execution'
-      ],
+      title: 'Strategy Planning',
+      description: 'Develop a customized roadmap for your success',
+      details: ['Create action plan', 'Set milestones', 'Resource planning', 'Timeline definition'],
       color: 'from-purple-600 to-pink-600'
     },
     {
-      icon: <FaBriefcase className="text-4xl" />,
-      title: 'Enterprise Consultation',
-      description: 'Strategic DevOps transformation for organizations of all sizes.',
-      details: [
-        'DevOps maturity assessment',
-        'Transformation roadmap',
-        'Tool chain standardization',
-        'Team training & upskilling',
-        'Culture & process change management',
-        'ROI measurement & reporting'
-      ],
+      icon: <FaHandshake className="text-4xl" />,
+      title: 'Implementation Support',
+      description: 'Hands-on guidance throughout execution',
+      details: ['Regular check-ins', 'Progress tracking', 'Problem solving', 'Course corrections'],
       color: 'from-teal-600 to-green-600'
+    },
+    {
+      icon: <FaCheckCircle className="text-4xl" />,
+      title: 'Success & Growth',
+      description: 'Achieve your goals and plan for continued growth',
+      details: ['Measure results', 'Celebrate wins', 'Future planning', 'Ongoing support'],
+      color: 'from-orange-600 to-red-600'
     },
   ];
 
@@ -280,6 +298,24 @@ export default function ServicesPage() {
     },
   ];
 
+  const handlePipelineClick = () => {
+    if (pipelineStage < pipelineStages.length - 1) {
+      setPipelineStage(pipelineStage + 1);
+    } else {
+      setPipelineStage(0);
+    }
+  };
+
+  const revealNextItem = (programIndex: number) => {
+    const currentRevealed = revealedItems[programIndex] || 0;
+    if (currentRevealed < coachingPrograms[programIndex].curriculum.length) {
+      setRevealedItems({
+        ...revealedItems,
+        [programIndex]: currentRevealed + 1
+      });
+    }
+  };
+
   return (
     <div className="relative overflow-hidden bg-white dark:bg-gray-900">
       {/* Hero Section */}
@@ -342,7 +378,7 @@ export default function ServicesPage() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            From enterprise infrastructure to career coaching, we provide comprehensive DevOps solutions tailored to your needs
+            Interactive solutions tailored to your needs - Click to explore!
           </motion.p>
 
           <motion.div
@@ -373,7 +409,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Core DevOps Services */}
+      {/* Interactive Core Services */}
       <section id="core-services" className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -387,7 +423,7 @@ export default function ServicesPage() {
               Core DevOps <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-accent-600">Services</span>
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-              Enterprise-grade DevOps solutions to transform your infrastructure and accelerate delivery
+              Click on any service to explore detailed features
             </p>
           </motion.div>
 
@@ -402,39 +438,77 @@ export default function ServicesPage() {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="group relative bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300"
-                whileHover={{ y: -10 }}
+                className="relative"
               >
-                <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-300`} />
-                
-                <div className={`inline-block p-4 bg-gradient-to-br ${service.gradient} rounded-xl text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  {service.icon}
-                </div>
-                
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                  {service.title}
-                </h3>
-                
-                <p className="text-gray-600 dark:text-gray-400 mb-6">
-                  {service.description}
-                </p>
-                
-                <ul className="space-y-2">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start text-gray-700 dark:text-gray-300">
-                      <span className="text-primary-600 dark:text-primary-400 mr-2">✓</span>
-                      <span className="text-sm">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+                <motion.div
+                  className={`group relative bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer ${
+                    expandedService === index ? 'ring-4 ring-primary-500' : ''
+                  }`}
+                  onClick={() => setExpandedService(expandedService === index ? null : index)}
+                  whileHover={{ y: -5 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-300`} />
+                  
+                  <div className="flex items-start justify-between mb-6">
+                    <div className={`inline-block p-4 bg-gradient-to-br ${service.gradient} rounded-xl text-white group-hover:scale-110 transition-transform duration-300`}>
+                      {service.icon}
+                    </div>
+                    <motion.div
+                      animate={{ rotate: expandedService === index ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <FaChevronDown className="text-2xl text-gray-400" />
+                    </motion.div>
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                    {service.title}
+                  </h3>
+                  
+                  <p className="text-gray-600 dark:text-gray-400 mb-4">
+                    {service.shortDesc}
+                  </p>
+
+                  <AnimatePresence>
+                    {expandedService === index && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <div className="border-t border-gray-200 dark:border-gray-700 pt-4 mt-4">
+                          <p className="text-gray-700 dark:text-gray-300 mb-4 italic">
+                            {service.details}
+                          </p>
+                          <ul className="space-y-2">
+                            {service.features.map((feature, idx) => (
+                              <motion.li
+                                key={idx}
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: idx * 0.1 }}
+                                className="flex items-start text-gray-700 dark:text-gray-300"
+                              >
+                                <FaCheck className="text-primary-600 dark:text-primary-400 mr-2 mt-1 flex-shrink-0" />
+                                <span className="text-sm">{feature}</span>
+                              </motion.li>
+                            ))}
+                          </ul>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* Consultation Services */}
-      <section id="consultation" className="py-20 bg-white dark:bg-gray-900">
+      {/* Interactive CI/CD Pipeline Visualization */}
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -444,65 +518,206 @@ export default function ServicesPage() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-              Professional <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">Consultation</span>
+              See Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">Pipeline</span> in Action
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-              Expert guidance for your DevOps career and organizational transformation
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-8">
+              Click the button to watch how our CI/CD pipeline flows
+            </p>
+            <motion.button
+              onClick={handlePipelineClick}
+              className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FaPlay className="inline mr-2" />
+              {pipelineStage === 0 ? 'Start Pipeline' : 'Next Stage'}
+            </motion.button>
+          </motion.div>
+
+          {/* Pipeline Stages */}
+          <div className="relative">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-2">
+              {pipelineStages.map((stage, index) => (
+                <div key={index} className="flex-1 w-full md:w-auto relative">
+                  <motion.div
+                    className={`relative p-6 rounded-xl text-center transition-all duration-500 ${
+                      index <= pipelineStage
+                        ? 'bg-gradient-to-br from-primary-500 to-accent-600 text-white shadow-2xl scale-105'
+                        : 'bg-gray-200 dark:bg-gray-800 text-gray-400 dark:text-gray-600'
+                    }`}
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ 
+                      scale: index <= pipelineStage ? 1.05 : 1,
+                      opacity: 1
+                    }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  >
+                    {index <= pipelineStage && (
+                      <motion.div
+                        className="absolute -top-2 -right-2 bg-green-500 rounded-full p-2"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ type: "spring", stiffness: 500, damping: 15 }}
+                      >
+                        <FaCheckCircle className="text-white text-xl" />
+                      </motion.div>
+                    )}
+                    
+                    <div className="text-4xl mb-3 flex justify-center">
+                      {stage.icon}
+                    </div>
+                    <h3 className="text-xl font-bold mb-2">{stage.name}</h3>
+                    <AnimatePresence>
+                      {index <= pipelineStage && (
+                        <motion.p
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="text-sm"
+                        >
+                          {stage.description}
+                        </motion.p>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+
+                  {/* Arrow between stages */}
+                  {index < pipelineStages.length - 1 && (
+                    <div className="hidden md:flex justify-center items-center absolute top-1/2 -right-4 transform -translate-y-1/2 z-10">
+                      <motion.div
+                        initial={{ opacity: 0.3 }}
+                        animate={{ opacity: index < pipelineStage ? 1 : 0.3 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <FaArrowRight className={`text-2xl ${index < pipelineStage ? 'text-primary-600' : 'text-gray-400'}`} />
+                      </motion.div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {pipelineStage === pipelineStages.length - 1 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-center mt-8"
+              >
+                <p className="text-2xl font-bold text-green-600 dark:text-green-400">
+                  🎉 Pipeline Complete! Ready for Next Deployment
+                </p>
+              </motion.div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Interactive Consultation Journey */}
+      <section id="consultation" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+              Your Consultation <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">Journey</span>
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-8">
+              Click through each step to see how we guide you to success
             </p>
           </motion.div>
 
-          <motion.div
-            className="grid grid-cols-1 lg:grid-cols-3 gap-8"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            {consultationServices.map((service, index) => (
+          {/* Progress Bar */}
+          <div className="max-w-4xl mx-auto mb-12">
+            <div className="relative h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
               <motion.div
-                key={index}
-                variants={itemVariants}
-                className="relative bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden"
-                whileHover={{ y: -10 }}
-              >
-                <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${service.color} opacity-10 rounded-full -mr-16 -mt-16`} />
-                
-                <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br ${service.color} rounded-xl text-white mb-6`}>
-                  {service.icon}
-                </div>
-                
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-                  {service.title}
-                </h3>
-                
-                <p className="text-gray-600 dark:text-gray-400 mb-6">
-                  {service.description}
-                </p>
-                
-                <div className="space-y-3">
-                  {service.details.map((detail, idx) => (
-                    <div key={idx} className="flex items-start">
-                      <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${service.color} mt-2 mr-3 flex-shrink-0`} />
-                      <span className="text-gray-700 dark:text-gray-300 text-sm">{detail}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <motion.button
-                  className={`mt-8 w-full py-3 bg-gradient-to-r ${service.color} text-white rounded-lg font-semibold hover:shadow-lg transition-shadow duration-300`}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                className="absolute h-full bg-gradient-to-r from-purple-600 to-pink-600"
+                initial={{ width: 0 }}
+                animate={{ width: `${((consultationStep + 1) / consultationSteps.length) * 100}%` }}
+                transition={{ duration: 0.5 }}
+              />
+            </div>
+            <div className="flex justify-between mt-2">
+              {consultationSteps.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setConsultationStep(index)}
+                  className={`w-8 h-8 rounded-full ${
+                    index <= consultationStep
+                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white'
+                      : 'bg-gray-300 dark:bg-gray-700 text-gray-600'
+                  } flex items-center justify-center font-bold text-sm transition-all hover:scale-110`}
                 >
-                  Book Consultation
-                </motion.button>
-              </motion.div>
-            ))}
+                  {index + 1}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Current Step Display */}
+          <motion.div
+            key={consultationStep}
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ duration: 0.5 }}
+            className="max-w-4xl mx-auto"
+          >
+            <div className={`bg-gradient-to-br ${consultationSteps[consultationStep].color} rounded-2xl p-8 md:p-12 text-white shadow-2xl`}>
+              <div className="flex flex-col md:flex-row items-center gap-8">
+                <div className="bg-white/20 backdrop-blur-sm p-6 rounded-xl">
+                  {consultationSteps[consultationStep].icon}
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-3xl md:text-4xl font-bold mb-4">
+                    {consultationSteps[consultationStep].title}
+                  </h3>
+                  <p className="text-xl mb-6 text-white/90">
+                    {consultationSteps[consultationStep].description}
+                  </p>
+                  <ul className="space-y-3">
+                    {consultationSteps[consultationStep].details.map((detail, idx) => (
+                      <motion.li
+                        key={idx}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: idx * 0.1 }}
+                        className="flex items-center text-white/90"
+                      >
+                        <FaCheckCircle className="mr-3 flex-shrink-0" />
+                        <span>{detail}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <div className="flex justify-between mt-8">
+                <button
+                  onClick={() => setConsultationStep(Math.max(0, consultationStep - 1))}
+                  disabled={consultationStep === 0}
+                  className="px-6 py-3 bg-white/20 backdrop-blur-sm rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-white/30 transition-colors"
+                >
+                  Previous
+                </button>
+                <button
+                  onClick={() => setConsultationStep(Math.min(consultationSteps.length - 1, consultationStep + 1))}
+                  disabled={consultationStep === consultationSteps.length - 1}
+                  className="px-6 py-3 bg-white text-gray-900 rounded-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition-colors"
+                >
+                  {consultationStep === consultationSteps.length - 1 ? 'Start Journey' : 'Next Step'}
+                </button>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Coaching Programs */}
-      <section id="coaching" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
+      {/* Interactive Coaching Programs */}
+      <section id="coaching" className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -515,7 +730,7 @@ export default function ServicesPage() {
               DevOps <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-red-600">Coaching Programs</span>
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-              Structured learning paths designed to accelerate your DevOps career from beginner to expert
+              Click on a program to reveal curriculum items one by one
             </p>
           </motion.div>
 
@@ -531,7 +746,7 @@ export default function ServicesPage() {
                 key={index}
                 variants={itemVariants}
                 className={`${program.color} rounded-2xl p-8 text-white shadow-2xl hover:shadow-3xl transition-all duration-300 relative overflow-hidden`}
-                whileHover={{ y: -10, scale: 1.02 }}
+                whileHover={{ y: -5, scale: 1.02 }}
               >
                 <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-5 rounded-full -mr-32 -mt-32" />
                 
@@ -559,19 +774,57 @@ export default function ServicesPage() {
                   </p>
                   
                   <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 mb-6">
-                    <h4 className="text-xl font-bold mb-4">What You'll Learn:</h4>
-                    <ul className="space-y-3">
-                      {program.curriculum.map((item, idx) => (
-                        <li key={idx} className="flex items-start">
-                          <span className="text-white mr-3">▸</span>
+                    <div className="flex items-center justify-between mb-4">
+                      <h4 className="text-xl font-bold">Curriculum:</h4>
+                      <span className="text-sm bg-white/20 px-3 py-1 rounded-full">
+                        {revealedItems[index] || 0} / {program.curriculum.length}
+                      </span>
+                    </div>
+                    <ul className="space-y-3 min-h-[200px]">
+                      {program.curriculum.slice(0, revealedItems[index] || 0).map((item, idx) => (
+                        <motion.li
+                          key={idx}
+                          initial={{ opacity: 0, x: -20, scale: 0.8 }}
+                          animate={{ opacity: 1, x: 0, scale: 1 }}
+                          transition={{ 
+                            type: "spring",
+                            stiffness: 300,
+                            damping: 20
+                          }}
+                          className="flex items-start bg-white/10 p-3 rounded-lg"
+                        >
+                          <FaCheckCircle className="text-green-400 mr-3 mt-1 flex-shrink-0" />
                           <span className="text-white/90">{item}</span>
-                        </li>
+                        </motion.li>
                       ))}
                     </ul>
+
+                    {(revealedItems[index] || 0) < program.curriculum.length && (
+                      <motion.button
+                        onClick={() => revealNextItem(index)}
+                        className="w-full mt-4 py-3 bg-white/20 hover:bg-white/30 rounded-lg font-bold transition-colors flex items-center justify-center gap-2"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <FaChevronRight />
+                        Reveal Next Topic
+                      </motion.button>
+                    )}
+
+                    {(revealedItems[index] || 0) === program.curriculum.length && revealedItems[index] > 0 && (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="mt-4 p-4 bg-green-500/20 rounded-lg text-center"
+                      >
+                        <FaCheckCircle className="text-3xl text-green-400 mx-auto mb-2" />
+                        <p className="font-bold">All Topics Revealed!</p>
+                      </motion.div>
+                    )}
                   </div>
 
                   <motion.button
-                    className="w-full py-4 bg-white text-gray-900 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors duration-300"
+                    className="w-full py-4 bg-white text-gray-900 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -584,7 +837,7 @@ export default function ServicesPage() {
 
           {/* Coaching Features */}
           <motion.div
-            className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl"
+            className="bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-8 shadow-xl"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -598,11 +851,12 @@ export default function ServicesPage() {
               {coachingFeatures.map((feature, index) => (
                 <motion.div
                   key={index}
-                  className="flex flex-col items-center text-center"
+                  className="flex flex-col items-center text-center bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ y: -5, scale: 1.05 }}
                 >
                   <div className="mb-4">
                     {feature.icon}

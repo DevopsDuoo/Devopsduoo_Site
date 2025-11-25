@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   FaEnvelope, 
@@ -26,7 +26,7 @@ export default function ContactPage() {
       emailjs.init(publicKey);
     }
   }, []);
-  const formRef = useRef<HTMLFormElement>(null);
+  
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
     from_name: '',
@@ -109,31 +109,39 @@ export default function ContactPage() {
         throw new Error('Email service not configured properly');
       }
 
-      if (formRef.current) {
-        console.log('Sending email with:', { serviceId, templateId });
-        
-        const response = await emailjs.sendForm(
-          serviceId,
-          templateId,
-          formRef.current,
-          publicKey
-        );
+      // Prepare template parameters with actual form data
+      const templateParams = {
+        from_name: formData.from_name,
+        from_email: formData.from_email,
+        phone: formData.phone || 'Not provided',
+        company: formData.company || 'Not provided',
+        service_interest: formData.service_interest || 'Not specified',
+        message: formData.message,
+      };
 
-        console.log('Email sent successfully:', response);
+      console.log('Sending email with data:', templateParams);
+      
+      const response = await emailjs.send(
+        serviceId,
+        templateId,
+        templateParams,
+        publicKey
+      );
 
-        setSubmitStatus('success');
-        setFormData({
-          from_name: '',
-          from_email: '',
-          phone: '',
-          company: '',
-          message: '',
-          service_interest: '',
-        });
-        setCurrentStep(1);
-        
-        setTimeout(() => setSubmitStatus('idle'), 5000);
-      }
+      console.log('Email sent successfully:', response);
+
+      setSubmitStatus('success');
+      setFormData({
+        from_name: '',
+        from_email: '',
+        phone: '',
+        company: '',
+        message: '',
+        service_interest: '',
+      });
+      setCurrentStep(1);
+      
+      setTimeout(() => setSubmitStatus('idle'), 5000);
     } catch (error: any) {
       console.error('Email send failed:', error);
       console.error('Error details:', {
@@ -355,7 +363,7 @@ export default function ContactPage() {
                 </motion.div>
               )}
 
-              <form ref={formRef} onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit}>
                 <AnimatePresence mode="wait">
                   {currentStep === 1 && (
                     <motion.div

@@ -1,404 +1,805 @@
-'use client';'use client';
+'use client';'use client';'use client';
 
 
 
-import { motion, AnimatePresence } from 'framer-motion';import { motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 
-import { useState } from 'react';import { FaLinkedin, FaGithub, FaTwitter } from 'react-icons/fa';
+import { useState } from 'react';
 
-import { 
+import { import { motion, AnimatePresence } from 'framer-motion';import { motion } from 'framer-motion';
 
-  FaLinkedin, export default function AboutPage() {
+  FaLinkedin, 
 
-  FaGithub,   const teamMembers = [
+  FaGithub, import { useState } from 'react';import { FaLinkedin, FaGithub, FaTwitter } from 'react-icons/fa';
 
-  FaTwitter,     {
+  FaTwitter,
 
-  FaAws,       name: 'John Smith',
+  FaAws,import { 
+
+  FaDocker,
+
+  FaJenkins  FaLinkedin, export default function AboutPage() {
+
+} from 'react-icons/fa';
+
+import {   FaGithub,   const teamMembers = [
+
+  SiKubernetes, 
+
+  SiTerraform,   FaTwitter,     {
+
+  SiAnsible,
+
+  SiPrometheus  FaAws,       name: 'John Smith',
+
+} from 'react-icons/si';
 
   FaDocker,      role: 'CEO & Founder',
 
-  FaCertificate,      image: '👨‍💼',
+export default function AboutPage() {
+
+  const [flippedCard, setFlippedCard] = useState<number | null>(null);  FaCertificate,      image: '👨‍💼',
+
+  const [expandedValue, setExpandedValue] = useState<number | null>(null);
 
   FaChevronDown,      description: '15+ years in DevOps and cloud architecture',
 
-  FaStar,      social: { linkedin: '#', github: '#', twitter: '#' },
+  const teamMembers = [
 
-  FaCode,    },
+    {  FaStar,      social: { linkedin: '#', github: '#', twitter: '#' },
 
-  FaServer,    {
+      name: 'Chandrashekhar Patil',
 
-  FaCloud      name: 'Sarah Johnson',
+      role: 'Founder & DevOps Architect',  FaCode,    },
 
-} from 'react-icons/fa';      role: 'CTO',
+      experience: '5+ Years',
 
-import {       image: '👩‍💻',
+      image: '/team/member1.jpg',  FaServer,    {
 
-  SiKubernetes,       description: 'Expert in CI/CD and automation',
+      bio: 'Certified DevOps expert specializing in cloud infrastructure and automation.',
 
-  SiTerraform,       social: { linkedin: '#', github: '#', twitter: '#' },
+      skills: [  FaCloud      name: 'Sarah Johnson',
 
-  SiAnsible,    },
+        { name: 'AWS', level: 95, icon: FaAws },
 
-  SiJenkins,    {
+        { name: 'Kubernetes', level: 90, icon: SiKubernetes },} from 'react-icons/fa';      role: 'CTO',
 
-  SiPrometheus,      name: 'Mike Chen',
+        { name: 'Terraform', level: 88, icon: SiTerraform },
 
-  SiAzuredevops      role: 'Lead DevOps Engineer',
+        { name: 'Docker', level: 92, icon: FaDocker },import {       image: '👩‍💻',
 
-} from 'react-icons/si';      image: '👨‍🔧',
+      ],
 
-      description: 'Kubernetes and container specialist',
+      certifications: [  SiKubernetes,       description: 'Expert in CI/CD and automation',
 
-export default function AboutPage() {      social: { linkedin: '#', github: '#', twitter: '#' },
+        'AWS Certified Solutions Architect',
 
-  const [flippedCard, setFlippedCard] = useState<number | null>(null);    },
+        'Kubernetes Administrator (CKA)',  SiTerraform,       social: { linkedin: '#', github: '#', twitter: '#' },
 
-  const [expandedValue, setExpandedValue] = useState<number | null>(null);    {
+        'Terraform Associate',
 
-      name: 'Emily Davis',
+      ],  SiAnsible,    },
 
-  const teamMembers = [      role: 'Cloud Architect',
+      social: {
 
-    {      image: '👩‍🚀',
+        linkedin: '#',  SiJenkins,    {
 
-      name: 'Chandrashekhar Patil',      description: 'Multi-cloud infrastructure expert',
+        github: '#',
 
-      role: 'Founder & DevOps Architect',      social: { linkedin: '#', github: '#', twitter: '#' },
+        twitter: '#',  SiPrometheus,      name: 'Mike Chen',
 
-      image: '👨‍💼',    },
+      }
 
-      shortDesc: '5+ years in DevOps engineering and cloud architecture',  ];
+    },  SiAzuredevops      role: 'Lead DevOps Engineer',
 
-      fullBio: 'Certified DevOps professional with extensive experience in designing and implementing scalable cloud infrastructure. Passionate about automation, continuous delivery, and helping teams achieve operational excellence.',
+    {
 
-      expertise: ['AWS', 'Kubernetes', 'Terraform', 'CI/CD', 'Docker', 'Monitoring'],  const values = [
+      name: 'Hrushikesh Potbhare',} from 'react-icons/si';      image: '👨‍🔧',
 
-      certifications: [    {
+      role: 'Co-Founder & DevOps Engineer',
 
-        'AWS Certified DevOps Engineer',      title: 'Innovation',
+      experience: '5+ Years',      description: 'Kubernetes and container specialist',
 
-        'Certified Kubernetes Administrator (CKA)',      description: 'We stay ahead of the curve with cutting-edge DevOps practices and tools.',
+      image: '/team/member2.jpg',
 
-        'HashiCorp Terraform Associate',      emoji: '🚀',
+      bio: 'Expert in CI/CD pipelines, monitoring, and infrastructure automation.',export default function AboutPage() {      social: { linkedin: '#', github: '#', twitter: '#' },
 
-        'Azure DevOps Engineer Expert'    },
+      skills: [
 
-      ],    {
+        { name: 'Jenkins', level: 93, icon: FaJenkins },  const [flippedCard, setFlippedCard] = useState<number | null>(null);    },
 
-      skills: [      title: 'Reliability',
+        { name: 'Ansible', level: 90, icon: SiAnsible },
 
-        { name: 'Cloud Architecture', level: 95 },      description: 'We build robust systems that you can depend on 24/7.',
+        { name: 'Prometheus', level: 87, icon: SiPrometheus },  const [expandedValue, setExpandedValue] = useState<number | null>(null);    {
 
-        { name: 'Container Orchestration', level: 90 },      emoji: '🛡️',
+        { name: 'Docker', level: 91, icon: FaDocker },
+
+      ],      name: 'Emily Davis',
+
+      certifications: [
+
+        'Jenkins Certified Engineer',  const teamMembers = [      role: 'Cloud Architect',
+
+        'Red Hat Certified Specialist',
+
+        'AWS Certified DevOps Engineer',    {      image: '👩‍🚀',
+
+      ],
+
+      social: {      name: 'Chandrashekhar Patil',      description: 'Multi-cloud infrastructure expert',
+
+        linkedin: '#',
+
+        github: '#',      role: 'Founder & DevOps Architect',      social: { linkedin: '#', github: '#', twitter: '#' },
+
+        twitter: '#',
+
+      }      image: '👨‍💼',    },
+
+    }
+
+  ];      shortDesc: '5+ years in DevOps engineering and cloud architecture',  ];
+
+
+
+  const values = [      fullBio: 'Certified DevOps professional with extensive experience in designing and implementing scalable cloud infrastructure. Passionate about automation, continuous delivery, and helping teams achieve operational excellence.',
+
+    {
+
+      title: 'Innovation',      expertise: ['AWS', 'Kubernetes', 'Terraform', 'CI/CD', 'Docker', 'Monitoring'],  const values = [
+
+      description: 'Staying ahead with cutting-edge DevOps technologies',
+
+      examples: ['Latest CI/CD tools', 'Cloud-native solutions', 'Automation-first approach']      certifications: [    {
+
+    },
+
+    {        'AWS Certified DevOps Engineer',      title: 'Innovation',
+
+      title: 'Excellence',
+
+      description: 'Delivering high-quality solutions that exceed expectations',        'Certified Kubernetes Administrator (CKA)',      description: 'We stay ahead of the curve with cutting-edge DevOps practices and tools.',
+
+      examples: ['Best practices', '99.9% uptime', 'Performance optimization']
+
+    },        'HashiCorp Terraform Associate',      emoji: '🚀',
+
+    {
+
+      title: 'Collaboration',        'Azure DevOps Engineer Expert'    },
+
+      description: 'Working closely with teams to achieve common goals',
+
+      examples: ['Agile methodology', 'Clear communication', 'Continuous feedback']      ],    {
+
+    },
+
+    {      skills: [      title: 'Reliability',
+
+      title: 'Reliability',
+
+      description: 'Building robust systems you can depend on',        { name: 'Cloud Architecture', level: 95 },      description: 'We build robust systems that you can depend on 24/7.',
+
+      examples: ['24/7 monitoring', 'Disaster recovery', 'Security first']
+
+    }        { name: 'Container Orchestration', level: 90 },      emoji: '🛡️',
+
+  ];
 
         { name: 'Infrastructure as Code', level: 92 },    },
 
-        { name: 'CI/CD Pipelines', level: 88 }    {
+  return (
 
-      ],      title: 'Collaboration',
+    <div className="relative overflow-hidden bg-white dark:bg-gray-900">        { name: 'CI/CD Pipelines', level: 88 }    {
 
-      social: {       description: 'We work closely with your team to achieve shared goals.',
+      {/* Hero Section */}
 
-        linkedin: 'https://www.linkedin.com/in/chandrashekhar-patil',       emoji: '🤝',
+      <section className="relative min-h-[40vh] flex items-center justify-center bg-gradient-to-br from-primary-100 via-gray-50 to-accent-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">      ],      title: 'Collaboration',
 
-        github: 'https://github.com/chandrashekhar-patil',     },
+        <div className="absolute inset-0 overflow-hidden">
 
-        twitter: '#'     {
+          <motion.div      social: {       description: 'We work closely with your team to achieve shared goals.',
 
-      },      title: 'Excellence',
+            className="absolute top-20 right-10 w-96 h-96 bg-primary-500 dark:bg-primary-600 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-20 dark:opacity-10"
 
-    },      description: 'We strive for perfection in every project we undertake.',
+            animate={{        linkedin: 'https://www.linkedin.com/in/chandrashekhar-patil',       emoji: '🤝',
 
-    {      emoji: '⭐',
+              scale: [1, 1.2, 1],
 
-      name: 'Hrushikesh Potbhare',    },
+              opacity: [0.2, 0.3, 0.2],        github: 'https://github.com/chandrashekhar-patil',     },
 
-      role: 'Co-Founder & DevOps Engineer',  ];
+            }}
 
-      image: '👨‍💻',
+            transition={{        twitter: '#'     {
 
-      shortDesc: '5+ years specializing in DevOps automation and infrastructure',  return (
+              duration: 8,
 
-      fullBio: 'Certified DevOps engineer with deep expertise in automation, configuration management, and building robust CI/CD pipelines. Committed to streamlining development workflows and enabling rapid, reliable software delivery.',    <div className="relative overflow-hidden bg-white dark:bg-gray-900">
+              repeat: Infinity,      },      title: 'Excellence',
 
-      expertise: ['Jenkins', 'Ansible', 'Prometheus', 'Docker', 'Azure DevOps', 'GitOps'],      {/* Hero Section */}
+              ease: "easeInOut",
 
-      certifications: [      <section className="relative min-h-[60vh] flex items-center justify-center bg-gradient-to-br from-primary-100 via-gray-50 to-accent-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+            }}    },      description: 'We strive for perfection in every project we undertake.',
 
-        'Azure DevOps Engineer Expert',        <div className="absolute inset-0 overflow-hidden">
+          />
 
-        'Certified Kubernetes Administrator (CKA)',          <motion.div
+        </div>    {      emoji: '⭐',
 
-        'Jenkins Certified Engineer',            className="absolute top-20 right-10 w-96 h-96 bg-primary-500 dark:bg-primary-600 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-20 dark:opacity-10"
 
-        'Ansible Automation Specialist'            animate={{
 
-      ],              scale: [1, 1.1, 1],
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">      name: 'Hrushikesh Potbhare',    },
 
-      skills: [              opacity: [0.2, 0.3, 0.2],
+          <motion.h1
 
-        { name: 'DevOps Automation', level: 93 },            }}
-
-        { name: 'Configuration Management', level: 90 },            transition={{
-
-        { name: 'Monitoring & Observability', level: 87 },              duration: 8,
-
-        { name: 'Container Technologies', level: 89 }              repeat: Infinity,
-
-      ],              ease: "easeInOut",
-
-      social: {             }}
-
-        linkedin: 'https://www.linkedin.com/in/hrushikesh-potbhare',           />
-
-        github: 'https://github.com/hrushikesh-potbhare',         </div>
-
-        twitter: '#' 
-
-      },        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-
-    },          <motion.h1
-
-  ];            className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6"
+            className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6"      role: 'Co-Founder & DevOps Engineer',  ];
 
             initial={{ opacity: 0, y: -30 }}
 
-  const values = [            animate={{ opacity: 1, y: 0 }}
-
-    {            transition={{ duration: 0.6 }}
-
-      title: 'Innovation',          >
-
-      description: 'We stay ahead of the curve with cutting-edge DevOps practices and tools.',            About <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-accent-600">The DevOps Duoo</span>
-
-      emoji: '🚀',          </motion.h1>
-
-      details: 'Constantly exploring and adopting the latest technologies to give our clients a competitive edge. From serverless architectures to GitOps workflows, we implement cutting-edge solutions.',          
-
-      examples: ['Cloud-native architectures', 'GitOps workflows', 'AI-powered automation', 'Microservices patterns']          <motion.p
-
-    },            className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto"
-
-    {            initial={{ opacity: 0 }}
-
-      title: 'Reliability',            animate={{ opacity: 1 }}
-
-      description: 'We build robust systems that you can depend on 24/7.',            transition={{ duration: 0.6, delay: 0.2 }}
-
-      emoji: '🛡️',          >
-
-      details: 'Our infrastructure designs prioritize high availability, disaster recovery, and fault tolerance. We implement best practices that ensure your systems stay up when it matters most.',            We are a team of passionate DevOps engineers dedicated to transforming how businesses build, deploy, and manage their applications.
-
-      examples: ['99.9% uptime SLAs', 'Automated failover', 'Multi-region deployments', 'Comprehensive monitoring']          </motion.p>
-
-    },        </div>
-
-    {      </section>
-
-      title: 'Collaboration',
-
-      description: 'We work closely with your team to achieve shared goals.',      {/* Our Story Section */}
-
-      emoji: '🤝',      <section className="py-20 bg-gray-50 dark:bg-gray-800">
-
-      details: 'DevOps is about culture as much as tools. We partner with your teams, provide knowledge transfer, and ensure everyone is empowered to maintain and improve systems.',        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-
-      examples: ['Agile methodologies', 'Knowledge sharing', 'Pair programming', 'Documentation culture']          <div className="grid md:grid-cols-2 gap-12 items-center">
-
-    },            <motion.div
-
-    {              initial={{ opacity: 0, x: -30 }}
-
-      title: 'Excellence',              whileInView={{ opacity: 1, x: 0 }}
-
-      description: 'We strive for perfection in every project we undertake.',              viewport={{ once: true, margin: "-100px" }}
-
-      emoji: '⭐',              transition={{ duration: 0.6 }}
-
-      details: 'Quality is non-negotiable. From code reviews to infrastructure audits, we maintain the highest standards and deliver solutions that exceed expectations.',            >
-
-      examples: ['Code quality gates', 'Security scanning', 'Performance optimization', 'Best practice adherence']              <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">Our Story</h2>
-
-    },              <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
-
-  ];                Founded in 2018, The DevOps Duoo started with a simple mission: to help businesses embrace the DevOps culture and accelerate their digital transformation journey.
-
-              </p>
-
-  const getTechIcon = (tech: string) => {              <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
-
-    const icons: {[key: string]: any} = {                What began as a two-person operation has grown into a thriving team of experts, serving clients across various industries—from startups to Fortune 500 companies.
-
-      'AWS': FaAws,              </p>
-
-      'Kubernetes': SiKubernetes,              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-
-      'Terraform': SiTerraform,                Today, we're proud to be at the forefront of DevOps innovation, helping organizations achieve faster deployments, improved reliability, and greater efficiency.
-
-      'Docker': FaDocker,              </p>
-
-      'Jenkins': SiJenkins,            </motion.div>
-
-      'Ansible': SiAnsible,
-
-      'Prometheus': SiPrometheus,            <motion.div
-
-      'Azure DevOps': SiAzuredevops,              initial={{ opacity: 0, x: 30 }}
-
-      'CI/CD': FaCode,              whileInView={{ opacity: 1, x: 0 }}
-
-      'Monitoring': FaServer,              viewport={{ once: true, margin: "-100px" }}
-
-      'GitOps': FaCloud,              transition={{ duration: 0.6 }}
-
-    };              className="relative"
-
-    const Icon = icons[tech] || FaCode;            >
-
-    return <Icon className="text-2xl" />;              <div className="bg-gradient-to-br from-primary-600 to-accent-600 rounded-2xl p-8 shadow-2xl">
-
-  };                <div className="grid grid-cols-2 gap-6 text-white">
-
-                  <div className="text-center">
-
-  return (                    <motion.div
-
-    <div className="relative overflow-hidden bg-white dark:bg-gray-900">                      className="text-5xl font-bold mb-2"
-
-      {/* Hero Section */}                      initial={{ opacity: 0, scale: 0.5 }}
-
-      <section className="relative min-h-[60vh] flex items-center justify-center bg-gradient-to-br from-primary-100 via-gray-50 to-accent-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">                      whileInView={{ opacity: 1, scale: 1 }}
-
-        <div className="absolute inset-0 overflow-hidden">                      viewport={{ once: true }}
-
-          <motion.div                      transition={{ duration: 0.4, delay: 0.1 }}
-
-            className="absolute top-20 right-10 w-96 h-96 bg-primary-500 dark:bg-primary-600 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-20 dark:opacity-10"                    >
-
-            animate={{                      500+
-
-              scale: [1, 1.1, 1],                    </motion.div>
-
-              opacity: [0.2, 0.3, 0.2],                    <div className="text-white/90">Projects Delivered</div>
-
-            }}                  </div>
-
-            transition={{                  <div className="text-center">
-
-              duration: 8,                    <motion.div
-
-              repeat: Infinity,                      className="text-5xl font-bold mb-2"
-
-              ease: "easeInOut",                      initial={{ opacity: 0, scale: 0.5 }}
-
-            }}                      whileInView={{ opacity: 1, scale: 1 }}
-
-          />                      viewport={{ once: true }}
-
-        </div>                      transition={{ duration: 0.4, delay: 0.2 }}
-
-                    >
-
-        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">                      150+
-
-          <motion.h1                    </motion.div>
-
-            className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6"                    <div className="text-white/90">Happy Clients</div>
-
-            initial={{ opacity: 0, y: -30 }}                  </div>
-
-            animate={{ opacity: 1, y: 0 }}                  <div className="text-center">
-
-            transition={{ duration: 0.6 }}                    <motion.div
-
-          >                      className="text-5xl font-bold mb-2"
-
-            About <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-accent-600">The DevOps Duoo</span>                      initial={{ opacity: 0, scale: 0.5 }}
-
-          </motion.h1>                      whileInView={{ opacity: 1, scale: 1 }}
-
-                                viewport={{ once: true }}
-
-          <motion.p                      transition={{ duration: 0.4, delay: 0.3 }}
-
-            className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto"                    >
-
-            initial={{ opacity: 0 }}                      6
-
-            animate={{ opacity: 1 }}                    </motion.div>
-
-            transition={{ duration: 0.6, delay: 0.2 }}                    <div className="text-white/90">Years Experience</div>
-
-          >                  </div>
-
-            Two certified DevOps engineers with 5+ years of experience, dedicated to transforming how businesses build, deploy, and manage their applications.                  <div className="text-center">
-
-          </motion.p>                    <motion.div
-
-        </div>                      className="text-5xl font-bold mb-2"
-
-      </section>                      initial={{ opacity: 0, scale: 0.5 }}
-
-                      whileInView={{ opacity: 1, scale: 1 }}
-
-      {/* Our Story Section */}                      viewport={{ once: true }}
-
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">                      transition={{ duration: 0.4, delay: 0.4 }}
-
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">                    >
-
-          <div className="grid md:grid-cols-2 gap-12 items-center">                      24/7
-
-            <motion.div                    </motion.div>
-
-              initial={{ opacity: 0, x: -30 }}                    <div className="text-white/90">Support</div>
-
-              whileInView={{ opacity: 1, x: 0 }}                  </div>
-
-              viewport={{ once: true, margin: "-100px" }}                </div>
-
-              transition={{ duration: 0.6 }}              </div>
-
-            >            </motion.div>
-
-              <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">Our Story</h2>          </div>
-
-              <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">        </div>
-
-                Founded by two passionate DevOps engineers, The DevOps Duoo started with a simple mission: to help businesses embrace DevOps culture and accelerate their digital transformation journey.      </section>
-
-              </p>
-
-              <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">      {/* Our Values Section */}
-
-                With over 5 years of hands-on experience and multiple industry certifications, we bring deep technical expertise and practical knowledge to every project we undertake.      <section className="py-20 bg-white dark:bg-gray-900">
-
-              </p>        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">          <motion.div
-
-                Today, we're proud to help organizations of all sizes achieve faster deployments, improved reliability, and greater operational efficiency through modern DevOps practices.            initial={{ opacity: 0, y: 30 }}
-
-              </p>            whileInView={{ opacity: 1, y: 0 }}
-
-            </motion.div>            viewport={{ once: true, margin: "-100px" }}
+            animate={{ opacity: 1, y: 0 }}      image: '👨‍💻',
 
             transition={{ duration: 0.6 }}
 
-            <motion.div            className="text-center mb-16"
+          >      shortDesc: '5+ years specializing in DevOps automation and infrastructure',  return (
 
-              initial={{ opacity: 0, x: 30 }}          >
+            About <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-accent-600">DevOps Duoo</span>
 
-              whileInView={{ opacity: 1, x: 0 }}            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">Our Core Values</h2>
+          </motion.h1>      fullBio: 'Certified DevOps engineer with deep expertise in automation, configuration management, and building robust CI/CD pipelines. Committed to streamlining development workflows and enabling rapid, reliable software delivery.',    <div className="relative overflow-hidden bg-white dark:bg-gray-900">
 
-              viewport={{ once: true, margin: "-100px" }}            <p className="text-xl text-gray-600 dark:text-gray-400">The principles that guide everything we do</p>
+          
 
-              transition={{ duration: 0.6 }}          </motion.div>
+          <motion.p      expertise: ['Jenkins', 'Ansible', 'Prometheus', 'Docker', 'Azure DevOps', 'GitOps'],      {/* Hero Section */}
 
-              className="relative"
+            className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto"
 
-            >          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            initial={{ opacity: 0 }}      certifications: [      <section className="relative min-h-[60vh] flex items-center justify-center bg-gradient-to-br from-primary-100 via-gray-50 to-accent-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+
+            animate={{ opacity: 1 }}
+
+            transition={{ duration: 0.6, delay: 0.2 }}        'Azure DevOps Engineer Expert',        <div className="absolute inset-0 overflow-hidden">
+
+          >
+
+            Empowering organizations with expert DevOps solutions, consultation, and coaching to accelerate their digital transformation journey.        'Certified Kubernetes Administrator (CKA)',          <motion.div
+
+          </motion.p>
+
+        </div>        'Jenkins Certified Engineer',            className="absolute top-20 right-10 w-96 h-96 bg-primary-500 dark:bg-primary-600 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-20 dark:opacity-10"
+
+      </section>
+
+        'Ansible Automation Specialist'            animate={{
+
+      {/* Mission Section */}
+
+      <section className="py-20 bg-white dark:bg-gray-900">      ],              scale: [1, 1.1, 1],
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          <motion.div      skills: [              opacity: [0.2, 0.3, 0.2],
+
+            className="text-center mb-16"
+
+            initial={{ opacity: 0, y: 30 }}        { name: 'DevOps Automation', level: 93 },            }}
+
+            whileInView={{ opacity: 1, y: 0 }}
+
+            viewport={{ once: true, margin: "-100px" }}        { name: 'Configuration Management', level: 90 },            transition={{
+
+            transition={{ duration: 0.6 }}
+
+          >        { name: 'Monitoring & Observability', level: 87 },              duration: 8,
+
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">Our Mission</h2>
+
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto">        { name: 'Container Technologies', level: 89 }              repeat: Infinity,
+
+              We strive to bridge the gap between development and operations, enabling businesses to deliver software faster, 
+
+              more reliably, and with greater efficiency through modern DevOps practices and continuous innovation.      ],              ease: "easeInOut",
+
+            </p>
+
+          </motion.div>      social: {             }}
+
+        </div>
+
+      </section>        linkedin: 'https://www.linkedin.com/in/hrushikesh-potbhare',           />
+
+
+
+      {/* Team Section with Interactive Flip Cards */}        github: 'https://github.com/hrushikesh-potbhare',         </div>
+
+      <section className="py-20 bg-gray-50 dark:bg-gray-800">
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">        twitter: '#' 
+
+          <motion.div
+
+            className="text-center mb-16"      },        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+
+            initial={{ opacity: 0, y: 30 }}
+
+            whileInView={{ opacity: 1, y: 0 }}    },          <motion.h1
+
+            viewport={{ once: true, margin: "-100px" }}
+
+            transition={{ duration: 0.6 }}  ];            className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6"
+
+          >
+
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Meet Our Team</h2>            initial={{ opacity: 0, y: -30 }}
+
+            <p className="text-xl text-gray-600 dark:text-gray-400">
+
+              Certified DevOps experts with 5+ years of hands-on experience  const values = [            animate={{ opacity: 1, y: 0 }}
+
+            </p>
+
+          </motion.div>    {            transition={{ duration: 0.6 }}
+
+
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">      title: 'Innovation',          >
+
+            {teamMembers.map((member, index) => (
+
+              <motion.div      description: 'We stay ahead of the curve with cutting-edge DevOps practices and tools.',            About <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-accent-600">The DevOps Duoo</span>
+
+                key={index}
+
+                className="relative h-[600px] cursor-pointer"      emoji: '🚀',          </motion.h1>
+
+                style={{ perspective: '1000px' }}
+
+                onClick={() => setFlippedCard(flippedCard === index ? null : index)}      details: 'Constantly exploring and adopting the latest technologies to give our clients a competitive edge. From serverless architectures to GitOps workflows, we implement cutting-edge solutions.',          
+
+                initial={{ opacity: 0, y: 30 }}
+
+                whileInView={{ opacity: 1, y: 0 }}      examples: ['Cloud-native architectures', 'GitOps workflows', 'AI-powered automation', 'Microservices patterns']          <motion.p
+
+                viewport={{ once: true, margin: "-100px" }}
+
+                transition={{ duration: 0.6, delay: index * 0.2 }}    },            className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto"
+
+              >
+
+                <motion.div    {            initial={{ opacity: 0 }}
+
+                  className="relative w-full h-full"
+
+                  style={{ transformStyle: 'preserve-3d' }}      title: 'Reliability',            animate={{ opacity: 1 }}
+
+                  animate={{ rotateY: flippedCard === index ? 180 : 0 }}
+
+                  transition={{ duration: 0.6, type: 'spring', stiffness: 100 }}      description: 'We build robust systems that you can depend on 24/7.',            transition={{ duration: 0.6, delay: 0.2 }}
+
+                >
+
+                  {/* Front of Card */}      emoji: '🛡️',          >
+
+                  <div
+
+                    className="absolute w-full h-full bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-700"      details: 'Our infrastructure designs prioritize high availability, disaster recovery, and fault tolerance. We implement best practices that ensure your systems stay up when it matters most.',            We are a team of passionate DevOps engineers dedicated to transforming how businesses build, deploy, and manage their applications.
+
+                    style={{ backfaceVisibility: 'hidden' }}
+
+                  >      examples: ['99.9% uptime SLAs', 'Automated failover', 'Multi-region deployments', 'Comprehensive monitoring']          </motion.p>
+
+                    <div className="flex flex-col items-center h-full">
+
+                      <div className="w-32 h-32 bg-gradient-to-br from-primary-500 to-accent-500 rounded-full mb-6 flex items-center justify-center text-white text-4xl font-bold">    },        </div>
+
+                        {member.name.split(' ').map(n => n[0]).join('')}
+
+                      </div>    {      </section>
+
+                      
+
+                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 text-center">      title: 'Collaboration',
+
+                        {member.name}
+
+                      </h3>      description: 'We work closely with your team to achieve shared goals.',      {/* Our Story Section */}
+
+                      <p className="text-primary-600 dark:text-primary-400 font-semibold mb-2">
+
+                        {member.role}      emoji: '🤝',      <section className="py-20 bg-gray-50 dark:bg-gray-800">
+
+                      </p>
+
+                      <p className="text-gray-600 dark:text-gray-400 mb-6">      details: 'DevOps is about culture as much as tools. We partner with your teams, provide knowledge transfer, and ensure everyone is empowered to maintain and improve systems.',        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                        {member.experience} Experience
+
+                      </p>      examples: ['Agile methodologies', 'Knowledge sharing', 'Pair programming', 'Documentation culture']          <div className="grid md:grid-cols-2 gap-12 items-center">
+
+                      
+
+                      <p className="text-gray-700 dark:text-gray-300 text-center mb-8">    },            <motion.div
+
+                        {member.bio}
+
+                      </p>    {              initial={{ opacity: 0, x: -30 }}
+
+
+
+                      <div className="mt-auto">      title: 'Excellence',              whileInView={{ opacity: 1, x: 0 }}
+
+                        <div className="flex gap-4 mb-6">
+
+                          <a href={member.social.linkedin} className="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">      description: 'We strive for perfection in every project we undertake.',              viewport={{ once: true, margin: "-100px" }}
+
+                            <FaLinkedin size={20} />
+
+                          </a>      emoji: '⭐',              transition={{ duration: 0.6 }}
+
+                          <a href={member.social.github} className="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+
+                            <FaGithub size={20} />      details: 'Quality is non-negotiable. From code reviews to infrastructure audits, we maintain the highest standards and deliver solutions that exceed expectations.',            >
+
+                          </a>
+
+                          <a href={member.social.twitter} className="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">      examples: ['Code quality gates', 'Security scanning', 'Performance optimization', 'Best practice adherence']              <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">Our Story</h2>
+
+                            <FaTwitter size={20} />
+
+                          </a>    },              <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+
+                        </div>
+
+                          ];                Founded in 2018, The DevOps Duoo started with a simple mission: to help businesses embrace the DevOps culture and accelerate their digital transformation journey.
+
+                        <div className="text-center text-sm text-gray-500 dark:text-gray-400 bg-primary-50 dark:bg-primary-900/20 py-2 px-4 rounded-lg">
+
+                          Click to see skills & certifications              </p>
+
+                        </div>
+
+                      </div>  const getTechIcon = (tech: string) => {              <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+
+                    </div>
+
+                  </div>    const icons: {[key: string]: any} = {                What began as a two-person operation has grown into a thriving team of experts, serving clients across various industries—from startups to Fortune 500 companies.
+
+
+
+                  {/* Back of Card */}      'AWS': FaAws,              </p>
+
+                  <div
+
+                    className="absolute w-full h-full bg-gradient-to-br from-primary-50 to-accent-50 dark:from-gray-900 dark:to-gray-800 rounded-2xl shadow-xl p-8 border-2 border-primary-500 dark:border-primary-600"      'Kubernetes': SiKubernetes,              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+
+                    style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+
+                  >      'Terraform': SiTerraform,                Today, we're proud to be at the forefront of DevOps innovation, helping organizations achieve faster deployments, improved reliability, and greater efficiency.
+
+                    <div className="flex flex-col h-full">
+
+                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">      'Docker': FaDocker,              </p>
+
+                        Skills & Expertise
+
+                      </h3>      'Jenkins': SiJenkins,            </motion.div>
+
+                      
+
+                      <div className="space-y-4 mb-8">      'Ansible': SiAnsible,
+
+                        {member.skills.map((skill, skillIndex) => (
+
+                          <div key={skillIndex}>      'Prometheus': SiPrometheus,            <motion.div
+
+                            <div className="flex items-center justify-between mb-2">
+
+                              <div className="flex items-center gap-2">      'Azure DevOps': SiAzuredevops,              initial={{ opacity: 0, x: 30 }}
+
+                                <skill.icon className="text-primary-600 dark:text-primary-400" />
+
+                                <span className="text-gray-900 dark:text-white font-medium">{skill.name}</span>      'CI/CD': FaCode,              whileInView={{ opacity: 1, x: 0 }}
+
+                              </div>
+
+                              <span className="text-gray-600 dark:text-gray-400">{skill.level}%</span>      'Monitoring': FaServer,              viewport={{ once: true, margin: "-100px" }}
+
+                            </div>
+
+                            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">      'GitOps': FaCloud,              transition={{ duration: 0.6 }}
+
+                              <motion.div
+
+                                className="bg-gradient-to-r from-primary-600 to-accent-600 h-2 rounded-full"    };              className="relative"
+
+                                initial={{ width: 0 }}
+
+                                animate={{ width: flippedCard === index ? `${skill.level}%` : 0 }}    const Icon = icons[tech] || FaCode;            >
+
+                                transition={{ duration: 1, delay: skillIndex * 0.1 }}
+
+                              />    return <Icon className="text-2xl" />;              <div className="bg-gradient-to-br from-primary-600 to-accent-600 rounded-2xl p-8 shadow-2xl">
+
+                            </div>
+
+                          </div>  };                <div className="grid grid-cols-2 gap-6 text-white">
+
+                        ))}
+
+                      </div>                  <div className="text-center">
+
+
+
+                      <div className="mt-auto">  return (                    <motion.div
+
+                        <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-3">Certifications</h4>
+
+                        <ul className="space-y-2">    <div className="relative overflow-hidden bg-white dark:bg-gray-900">                      className="text-5xl font-bold mb-2"
+
+                          {member.certifications.map((cert, certIndex) => (
+
+                            <motion.li      {/* Hero Section */}                      initial={{ opacity: 0, scale: 0.5 }}
+
+                              key={certIndex}
+
+                              className="flex items-start gap-2 text-gray-700 dark:text-gray-300"      <section className="relative min-h-[60vh] flex items-center justify-center bg-gradient-to-br from-primary-100 via-gray-50 to-accent-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">                      whileInView={{ opacity: 1, scale: 1 }}
+
+                              initial={{ opacity: 0, x: -20 }}
+
+                              animate={{ opacity: flippedCard === index ? 1 : 0, x: flippedCard === index ? 0 : -20 }}        <div className="absolute inset-0 overflow-hidden">                      viewport={{ once: true }}
+
+                              transition={{ duration: 0.4, delay: certIndex * 0.1 }}
+
+                            >          <motion.div                      transition={{ duration: 0.4, delay: 0.1 }}
+
+                              <span className="text-primary-600 dark:text-primary-400 mt-1">✓</span>
+
+                              <span className="text-sm">{cert}</span>            className="absolute top-20 right-10 w-96 h-96 bg-primary-500 dark:bg-primary-600 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-20 dark:opacity-10"                    >
+
+                            </motion.li>
+
+                          ))}            animate={{                      500+
+
+                        </ul>
+
+                                      scale: [1, 1.1, 1],                    </motion.div>
+
+                        <div className="mt-6 text-center text-sm text-gray-600 dark:text-gray-400 bg-white/50 dark:bg-gray-800/50 py-2 px-4 rounded-lg">
+
+                          Click to flip back              opacity: [0.2, 0.3, 0.2],                    <div className="text-white/90">Projects Delivered</div>
+
+                        </div>
+
+                      </div>            }}                  </div>
+
+                    </div>
+
+                  </div>            transition={{                  <div className="text-center">
+
+                </motion.div>
+
+              </motion.div>              duration: 8,                    <motion.div
+
+            ))}
+
+          </div>              repeat: Infinity,                      className="text-5xl font-bold mb-2"
+
+        </div>
+
+      </section>              ease: "easeInOut",                      initial={{ opacity: 0, scale: 0.5 }}
+
+
+
+      {/* Values Section */}            }}                      whileInView={{ opacity: 1, scale: 1 }}
+
+      <section className="py-20 bg-white dark:bg-gray-900">
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">          />                      viewport={{ once: true }}
+
+          <motion.div
+
+            className="text-center mb-16"        </div>                      transition={{ duration: 0.4, delay: 0.2 }}
+
+            initial={{ opacity: 0, y: 30 }}
+
+            whileInView={{ opacity: 1, y: 0 }}                    >
+
+            viewport={{ once: true, margin: "-100px" }}
+
+            transition={{ duration: 0.6 }}        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">                      150+
+
+          >
+
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Our Core Values</h2>          <motion.h1                    </motion.div>
+
+            <p className="text-xl text-gray-600 dark:text-gray-400">
+
+              The principles that guide everything we do            className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6"                    <div className="text-white/90">Happy Clients</div>
+
+            </p>
+
+          </motion.div>            initial={{ opacity: 0, y: -30 }}                  </div>
+
+
+
+          <div className="grid md:grid-cols-2 gap-6">            animate={{ opacity: 1, y: 0 }}                  <div className="text-center">
+
+            {values.map((value, index) => (
+
+              <motion.div            transition={{ duration: 0.6 }}                    <motion.div
+
+                key={index}
+
+                className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 cursor-pointer hover:border-primary-500 dark:hover:border-primary-500 transition-colors"          >                      className="text-5xl font-bold mb-2"
+
+                initial={{ opacity: 0, y: 30 }}
+
+                whileInView={{ opacity: 1, y: 0 }}            About <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-accent-600">The DevOps Duoo</span>                      initial={{ opacity: 0, scale: 0.5 }}
+
+                viewport={{ once: true, margin: "-100px" }}
+
+                transition={{ duration: 0.6, delay: index * 0.1 }}          </motion.h1>                      whileInView={{ opacity: 1, scale: 1 }}
+
+                onClick={() => setExpandedValue(expandedValue === index ? null : index)}
+
+              >                                viewport={{ once: true }}
+
+                <div className="flex items-start justify-between mb-4">
+
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{value.title}</h3>          <motion.p                      transition={{ duration: 0.4, delay: 0.3 }}
+
+                  <motion.div
+
+                    className="text-primary-600 dark:text-primary-400 text-xl"            className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto"                    >
+
+                    animate={{ rotate: expandedValue === index ? 180 : 0 }}
+
+                    transition={{ duration: 0.3 }}            initial={{ opacity: 0 }}                      6
+
+                  >
+
+                    ▼            animate={{ opacity: 1 }}                    </motion.div>
+
+                  </motion.div>
+
+                </div>            transition={{ duration: 0.6, delay: 0.2 }}                    <div className="text-white/90">Years Experience</div>
+
+                
+
+                <p className="text-gray-600 dark:text-gray-400 mb-4">{value.description}</p>          >                  </div>
+
+                
+
+                <motion.div            Two certified DevOps engineers with 5+ years of experience, dedicated to transforming how businesses build, deploy, and manage their applications.                  <div className="text-center">
+
+                  initial={false}
+
+                  animate={{           </motion.p>                    <motion.div
+
+                    height: expandedValue === index ? 'auto' : 0,
+
+                    opacity: expandedValue === index ? 1 : 0        </div>                      className="text-5xl font-bold mb-2"
+
+                  }}
+
+                  transition={{ duration: 0.3 }}      </section>                      initial={{ opacity: 0, scale: 0.5 }}
+
+                  className="overflow-hidden"
+
+                >                      whileInView={{ opacity: 1, scale: 1 }}
+
+                  <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
+
+                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">Key Aspects:</h4>      {/* Our Story Section */}                      viewport={{ once: true }}
+
+                    <ul className="space-y-2">
+
+                      {value.examples.map((example, exIndex) => (      <section className="py-20 bg-gray-50 dark:bg-gray-800">                      transition={{ duration: 0.4, delay: 0.4 }}
+
+                        <li key={exIndex} className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+
+                          <span className="w-1.5 h-1.5 bg-primary-600 rounded-full"></span>        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">                    >
+
+                          <span className="text-sm">{example}</span>
+
+                        </li>          <div className="grid md:grid-cols-2 gap-12 items-center">                      24/7
+
+                      ))}
+
+                    </ul>            <motion.div                    </motion.div>
+
+                  </div>
+
+                </motion.div>              initial={{ opacity: 0, x: -30 }}                    <div className="text-white/90">Support</div>
+
+              </motion.div>
+
+            ))}              whileInView={{ opacity: 1, x: 0 }}                  </div>
+
+          </div>
+
+        </div>              viewport={{ once: true, margin: "-100px" }}                </div>
+
+      </section>
+
+              transition={{ duration: 0.6 }}              </div>
+
+      {/* CTA Section */}
+
+      <section className="py-20 bg-gradient-to-br from-primary-600 to-accent-600">            >            </motion.div>
+
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+          <motion.h2              <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">Our Story</h2>          </div>
+
+            className="text-4xl font-bold text-white mb-6"
+
+            initial={{ opacity: 0, y: 30 }}              <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">        </div>
+
+            whileInView={{ opacity: 1, y: 0 }}
+
+            viewport={{ once: true, margin: "-100px" }}                Founded by two passionate DevOps engineers, The DevOps Duoo started with a simple mission: to help businesses embrace DevOps culture and accelerate their digital transformation journey.      </section>
+
+            transition={{ duration: 0.6 }}
+
+          >              </p>
+
+            Ready to Transform Your Infrastructure?
+
+          </motion.h2>              <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">      {/* Our Values Section */}
+
+          
+
+          <motion.p                With over 5 years of hands-on experience and multiple industry certifications, we bring deep technical expertise and practical knowledge to every project we undertake.      <section className="py-20 bg-white dark:bg-gray-900">
+
+            className="text-xl text-white/90 mb-8"
+
+            initial={{ opacity: 0 }}              </p>        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            whileInView={{ opacity: 1 }}
+
+            viewport={{ once: true, margin: "-100px" }}              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">          <motion.div
+
+            transition={{ duration: 0.6, delay: 0.2 }}
+
+          >                Today, we're proud to help organizations of all sizes achieve faster deployments, improved reliability, and greater operational efficiency through modern DevOps practices.            initial={{ opacity: 0, y: 30 }}
+
+            Let's discuss how we can help accelerate your DevOps journey
+
+          </motion.p>              </p>            whileInView={{ opacity: 1, y: 0 }}
+
+          
+
+          <motion.a            </motion.div>            viewport={{ once: true, margin: "-100px" }}
+
+            href="/contact"
+
+            className="inline-block px-8 py-4 bg-white text-primary-600 font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all hover:scale-105"            transition={{ duration: 0.6 }}
+
+            initial={{ opacity: 0, y: 20 }}
+
+            whileInView={{ opacity: 1, y: 0 }}            <motion.div            className="text-center mb-16"
+
+            viewport={{ once: true, margin: "-100px" }}
+
+            transition={{ duration: 0.6, delay: 0.4 }}              initial={{ opacity: 0, x: 30 }}          >
+
+            whileHover={{ scale: 1.05 }}
+
+            whileTap={{ scale: 0.95 }}              whileInView={{ opacity: 1, x: 0 }}            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">Our Core Values</h2>
+
+          >
+
+            Get In Touch              viewport={{ once: true, margin: "-100px" }}            <p className="text-xl text-gray-600 dark:text-gray-400">The principles that guide everything we do</p>
+
+          </motion.a>
+
+        </div>              transition={{ duration: 0.6 }}          </motion.div>
+
+      </section>
+
+    </div>              className="relative"
+
+  );
+
+}            >          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
 
               <div className="bg-gradient-to-br from-primary-600 to-accent-600 rounded-2xl p-8 shadow-2xl">            {values.map((value, index) => (
 

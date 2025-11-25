@@ -14,7 +14,11 @@ A modern, fully animated service-based company website built with Next.js 14, Ty
 
 1. **Home Page** - Hero section with animated elements, services showcase, stats, and CTA
 2. **About Us** - Company story, core values, and team members with animations
-3. **Contact Us** - Contact form with validation, contact information, and social links
+3. **Services** - Comprehensive service offerings including:
+   - Core DevOps Services (Cloud, CI/CD, Kubernetes, Monitoring, IaC, Security)
+   - Professional Consultation (Career, Technical, and Enterprise)
+   - Coaching Programs (Fundamentals, Advanced, Certification, Career Accelerator)
+4. **Contact Us** - Contact form with validation, contact information, and social links
 
 ## 🛠️ Technologies Used
 
@@ -89,6 +93,7 @@ Edit `tailwind.config.ts` to customize the color scheme:
 
 - **Home Page**: Edit `app/page.tsx`
 - **About Page**: Edit `app/about/page.tsx`
+- **Services Page**: Edit `app/services/page.tsx`
 - **Contact Page**: Edit `app/contact/page.tsx`
 - **Navigation**: Edit `components/Navbar.tsx`
 - **Footer**: Edit `components/Footer.tsx`
@@ -126,6 +131,9 @@ DevOpsDuo/
 │   │   └── page.tsx          # About Us page
 │   ├── contact/
 │   │   └── page.tsx          # Contact page
+│   ├── services/
+│   │   ├── layout.tsx        # Services layout
+│   │   └── page.tsx          # Services page
 │   ├── globals.css           # Global styles
 │   ├── layout.tsx            # Root layout
 │   └── page.tsx              # Home page

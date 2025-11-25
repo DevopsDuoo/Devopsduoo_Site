@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   FaEnvelope, 
@@ -19,6 +19,13 @@ import {
 import emailjs from '@emailjs/browser';
 
 export default function ContactPage() {
+  // Initialize EmailJS
+  useEffect(() => {
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    if (publicKey) {
+      emailjs.init(publicKey);
+    }
+  }, []);
   const formRef = useRef<HTMLFormElement>(null);
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -92,17 +99,27 @@ export default function ContactPage() {
     setIsSubmitting(true);
     
     try {
-      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID';
-      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
-      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+      // Validate environment variables
+      if (!serviceId || !templateId || !publicKey) {
+        console.error('EmailJS configuration missing:', { serviceId, templateId, publicKey });
+        throw new Error('Email service not configured properly');
+      }
 
       if (formRef.current) {
-        await emailjs.sendForm(
+        console.log('Sending email with:', { serviceId, templateId });
+        
+        const response = await emailjs.sendForm(
           serviceId,
           templateId,
           formRef.current,
           publicKey
         );
+
+        console.log('Email sent successfully:', response);
 
         setSubmitStatus('success');
         setFormData({
@@ -119,6 +136,11 @@ export default function ContactPage() {
       }
     } catch (error: any) {
       console.error('Email send failed:', error);
+      console.error('Error details:', {
+        message: error.message,
+        text: error.text,
+        status: error.status
+      });
       setSubmitStatus('error');
       setTimeout(() => setSubmitStatus('idle'), 5000);
     } finally {

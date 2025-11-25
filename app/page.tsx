@@ -47,6 +47,34 @@ interface FloatingIcon {
 }
 
 export default function Home() {
+  // Animated counter hook
+  const useCounter = (end: number, duration: number = 2000, inView: boolean = false) => {
+    const [count, setCount] = useState(0);
+    
+    useEffect(() => {
+      if (!inView) return;
+      
+      let startTime: number | null = null;
+      const startValue = 0;
+      
+      const animate = (currentTime: number) => {
+        if (!startTime) startTime = currentTime;
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+        
+        const easeOutQuad = 1 - Math.pow(1 - progress, 3);
+        setCount(Math.floor(startValue + (end - startValue) * easeOutQuad));
+        
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        }
+      };
+      
+      requestAnimationFrame(animate);
+    }, [end, duration, inView]);
+    
+    return count;
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -74,31 +102,43 @@ export default function Home() {
       icon: <FaCloud className="text-5xl" />,
       title: 'Cloud Infrastructure',
       description: 'Design and implement scalable cloud solutions on AWS, Azure, and GCP.',
+      link: '/services#cloud',
+      gradient: 'from-blue-500 to-cyan-500',
     },
     {
       icon: <FaCodeBranch className="text-5xl" />,
       title: 'CI/CD Pipeline',
       description: 'Automate your deployment process with robust CI/CD pipelines.',
+      link: '/services#cicd',
+      gradient: 'from-purple-500 to-pink-500',
     },
     {
       icon: <FaServer className="text-5xl" />,
       title: 'Container Orchestration',
       description: 'Master Docker and Kubernetes for efficient container management.',
+      link: '/services#containers',
+      gradient: 'from-green-500 to-teal-500',
     },
     {
       icon: <FaChartLine className="text-5xl" />,
       title: 'Monitoring & Logging',
       description: 'Comprehensive monitoring solutions for system reliability.',
+      link: '/services#monitoring',
+      gradient: 'from-orange-500 to-red-500',
     },
     {
       icon: <FaShieldAlt className="text-5xl" />,
       title: 'Security & Compliance',
       description: 'Implement security best practices and ensure compliance.',
+      link: '/services#security',
+      gradient: 'from-indigo-500 to-purple-500',
     },
     {
       icon: <FaRocket className="text-5xl" />,
       title: 'DevOps Automation',
       description: 'Streamline operations with intelligent automation solutions.',
+      link: '/services#automation',
+      gradient: 'from-yellow-500 to-orange-500',
     },
   ];
 
@@ -375,32 +415,80 @@ export default function Home() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {services.map((service, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 hover:border-primary-500 dark:hover:border-primary-500 transition-colors duration-300"
-              >
+              <Link href={service.link} key={index}>
                 <motion.div
-                  className="text-primary-600 dark:text-primary-400 mb-4"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.3 }}
+                  variants={itemVariants}
+                  whileHover={{ y: -12, scale: 1.02 }}
+                  className="group relative bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 hover:border-transparent hover:shadow-2xl transition-all duration-300 cursor-pointer overflow-hidden"
                 >
-                  {service.icon}
+                  {/* Animated gradient background on hover */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+                  
+                  {/* Shine effect on hover */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                    initial={{ x: '-100%' }}
+                    whileHover={{ x: '100%' }}
+                    transition={{ duration: 0.6 }}
+                  />
+                  
+                  <div className="relative z-10">
+                    <motion.div
+                      className={`text-primary-600 dark:text-primary-400 mb-4 group-hover:bg-gradient-to-br group-hover:${service.gradient} group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300`}
+                      whileHover={{ scale: 1.15, rotate: 5 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {service.icon}
+                    </motion.div>
+                    <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary-600 group-hover:to-accent-600 transition-all duration-300">
+                      {service.title}
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400 mb-4">
+                      {service.description}
+                    </p>
+                    
+                    {/* Learn more arrow that appears on hover */}
+                    <motion.div
+                      className="flex items-center text-primary-600 dark:text-primary-400 font-semibold"
+                      initial={{ opacity: 0, x: -10 }}
+                      whileHover={{ opacity: 1, x: 0 }}
+                    >
+                      <span className="mr-2">Learn More</span>
+                      <motion.span
+                        animate={{ x: [0, 5, 0] }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                      >
+                        →
+                      </motion.span>
+                    </motion.div>
+                  </div>
                 </motion.div>
-                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400">
-                  {service.description}
-                </p>
-              </motion.div>
+              </Link>
             ))}
+          </motion.div>
+
+          {/* View All Services Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-center mt-12"
+          >
+            <Link href="/services">
+              <motion.button
+                className="px-8 py-4 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-full text-lg font-semibold shadow-lg"
+                whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(99, 102, 241, 0.3)" }}
+                whileTap={{ scale: 0.98 }}
+              >
+                View All Services
+              </motion.button>
+            </Link>
           </motion.div>
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Stats Section with Animated Counters */}
       <section className="py-20 bg-gradient-to-r from-primary-600 to-accent-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -411,30 +499,36 @@ export default function Home() {
             className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
           >
             {[
-              { number: '500+', label: 'Projects Completed' },
-              { number: '150+', label: 'Happy Clients' },
-              { number: '99.9%', label: 'Uptime Guarantee' },
-              { number: '24/7', label: 'Support Available' },
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <motion.h3
-                  className="text-4xl md:text-5xl font-bold text-white mb-2"
-                  initial={{ scale: 0.5 }}
-                  whileInView={{ scale: 1 }}
+              { number: 500, label: 'Projects Completed', suffix: '+' },
+              { number: 150, label: 'Happy Clients', suffix: '+' },
+              { number: 99.9, label: 'Uptime Guarantee', suffix: '%' },
+              { number: 24, label: 'Support Available', suffix: '/7' },
+            ].map((stat, index) => {
+              const [inView, setInView] = useState(false);
+              const count = useCounter(stat.number, 2000, inView);
+              
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  onViewportEnter={() => setInView(true)}
                 >
-                  {stat.number}
-                </motion.h3>
-                <p className="text-white/90">{stat.label}</p>
-              </motion.div>
-            ))}
+                  <motion.h3
+                    className="text-4xl md:text-5xl font-bold text-white mb-2"
+                    initial={{ scale: 0.5 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
+                  >
+                    {stat.suffix === '%' ? count.toFixed(1) : count}{stat.suffix}
+                  </motion.h3>
+                  <p className="text-white/90">{stat.label}</p>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </section>

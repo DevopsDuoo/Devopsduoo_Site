@@ -5,20 +5,30 @@ A modern, fully animated service-based company website built with Next.js 14, Ty
 ## 🚀 Features
 
 - **Modern & Animated UI**: Stunning animations powered by Framer Motion
+- **Interactive Elements**: 
+  - Animated stats counter that counts up when scrolled into view
+  - Interactive service preview cards with hover effects and links
+  - 3D flip cards for team members
+  - Multi-step contact form with progress tracking
+- **Global Enhancements**:
+  - Scroll progress indicator at the top of the page
+  - Smooth page transitions between routes
+  - Back-to-top button with scroll progress circle (mobile)
 - **Fully Responsive**: Mobile-friendly design that works on all devices
 - **Fast & Optimized**: Built with Next.js 14 for optimal performance
 - **TypeScript**: Type-safe code for better development experience
 - **Tailwind CSS**: Utility-first CSS framework for rapid UI development
+- **EmailJS Integration**: Working contact form with email delivery
 
 ## 📄 Pages
 
-1. **Home Page** - Hero section with animated elements, services showcase, stats, and CTA
-2. **About Us** - Company story, core values, and team members with animations
-3. **Services** - Comprehensive service offerings including:
-   - Core DevOps Services (Cloud, CI/CD, Kubernetes, Monitoring, IaC, Security)
-   - Professional Consultation (Career, Technical, and Enterprise)
-   - Coaching Programs (Fundamentals, Advanced, Certification, Career Accelerator)
-4. **Contact Us** - Contact form with validation, contact information, and social links
+1. **Home Page** - Hero section with physics-based floating icons, animated stats counter, interactive service cards, and CTA
+2. **About Us** - Company story, core values, and 3D flip cards for team founders (Chandrashekhar Patil & Hrushikesh Potbhare)
+3. **Services** - Comprehensive service offerings with interactive animations:
+   - Core DevOps Services (Cloud, CI/CD, Kubernetes, Monitoring, IaC, Security) with click-to-expand cards
+   - Professional Consultation with interactive journey visualization
+   - Coaching Programs with animated curriculum reveals
+4. **Contact Us** - Multi-step contact form with EmailJS integration, Google Maps, contact information, and social links
 
 ## 🛠️ Technologies Used
 
@@ -125,22 +135,38 @@ npm start
 ## 📂 Project Structure
 
 ```
-DevOpsDuo/
+Devopsduoo_Site/
 ├── app/
 │   ├── about/
-│   │   └── page.tsx          # About Us page
+│   │   ├── layout.tsx        # About page layout with metadata
+│   │   └── page.tsx          # About Us page with 3D flip cards
 │   ├── contact/
-│   │   └── page.tsx          # Contact page
+│   │   ├── layout.tsx        # Contact page layout with metadata
+│   │   └── page.tsx          # Multi-step contact form with EmailJS
 │   ├── services/
-│   │   ├── layout.tsx        # Services layout
-│   │   └── page.tsx          # Services page
-│   ├── globals.css           # Global styles
-│   ├── layout.tsx            # Root layout
-│   └── page.tsx              # Home page
+│   │   ├── layout.tsx        # Services layout with metadata
+│   │   └── page.tsx          # Interactive services page
+│   ├── globals.css           # Global styles & animations
+│   ├── layout.tsx            # Root layout with metadata & SEO
+│   ├── page.tsx              # Home page with animated stats
+│   └── sitemap.ts            # Sitemap generation
 ├── components/
-│   ├── Footer.tsx            # Footer component
-│   └── Navbar.tsx            # Navigation component
-├── public/                   # Static assets
+│   ├── ClientLayout.tsx      # Client-side layout wrapper
+│   ├── Footer.tsx            # Footer with social links
+│   ├── GlobalEnhancements.tsx # Scroll progress & back-to-top
+│   ├── Navbar.tsx            # Navigation with mobile menu
+│   ├── PageTransition.tsx    # Smooth page transitions
+│   └── ThemeToggle.tsx       # Dark/light theme switcher
+├── context/
+│   └── ThemeContext.tsx      # Theme context provider
+├── lib/
+│   └── structured-data.ts    # SEO structured data
+├── public/
+│   └── robots.txt            # Search engine crawling rules
+├── .env.local               # EmailJS credentials (gitignored)
+├── .gitignore               # Git ignore rules
+├── EMAILJS_SETUP.md         # EmailJS setup guide
+├── SEO_SETUP.md             # SEO configuration guide
 ├── next.config.mjs          # Next.js configuration
 ├── tailwind.config.ts       # Tailwind CSS configuration
 ├── tsconfig.json            # TypeScript configuration
@@ -149,25 +175,63 @@ DevOpsDuo/
 
 ## 🎬 Animation Features
 
-- **Page transitions** with Framer Motion
-- **Scroll-triggered animations** for sections
-- **Hover effects** on buttons and cards
-- **Floating elements** in hero sections
-- **Gradient animations** on text and backgrounds
-- **Smooth navigation** with animated underlines
-- **Mobile menu** with slide-in animation
+### Home Page
+- **Physics-based floating icons** with collision detection
+- **Animated stats counter** that counts up when scrolled into view (500+ projects, 150+ clients, etc.)
+- **Interactive service cards** with gradient backgrounds, shine effects, and links to Services page
+- **Hover animations** with scale, color transitions, and animated arrows
+
+### About Page
+- **3D flip cards** for team founders with skills and certifications
+- **Animated skill bars** that fill on scroll
+- **Expandable value cards** with smooth transitions
+
+### Services Page
+- **Click-to-expand service cards** with detailed information
+- **CI/CD pipeline visualization** with animated flow
+- **Interactive consultation journey** with step-by-step animations
+- **Curriculum reveal animations** for coaching programs
+
+### Contact Page
+- **Multi-step form** with progress bar (3 steps)
+- **Step transitions** with slide animations
+- **Real-time validation** with animated error messages
+- **Success/error feedback** with confetti effect
+
+### Global Enhancements
+- **Scroll progress bar** at the top (gradient animation)
+- **Page transitions** with fade and slide effects
+- **Back-to-top button** with bounce animation
+- **Scroll progress circle** (mobile) showing percentage
+- **Smooth scrolling** throughout the site
 
 ## 📧 Contact Form
 
-The contact form includes:
-- Name (required)
-- Email (required)
-- Phone (optional)
-- Company (optional)
-- Message (required)
-- Form validation
-- Success/Error states
-- Animated submission feedback
+The multi-step contact form includes:
+
+### Step 1: Personal Information
+- Name (required, min 2 characters)
+- Email (required, validated format)
+
+### Step 2: Company Details
+- Phone number (optional)
+- Company name (optional)
+- Service interest (dropdown selection)
+
+### Step 3: Message & Review
+- Message (required, min 10 characters)
+- Review all information before submission
+
+### Features
+- **EmailJS Integration**: Sends emails to devopsduoo@gmail.com
+- **Real-time validation**: Inline error messages
+- **Progress tracking**: Visual progress bar (33%, 66%, 100%)
+- **Step navigation**: Back/Next buttons with animations
+- **Success/Error states**: Animated feedback messages
+- **Form reset**: Clears form after successful submission
+
+### Setup
+See `EMAILJS_SETUP.md` for detailed configuration instructions.
 
 ## 🔧 Troubleshooting
 

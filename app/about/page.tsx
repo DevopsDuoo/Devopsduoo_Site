@@ -484,25 +484,15 @@ export default function AboutPage() {
             )}
 
             {values.map((value, index) => (
-              <motion.div
+              <div
                 key={index}
-                className="group relative bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-xl p-6 border-2 border-gray-200 dark:border-gray-600 cursor-pointer hover:border-primary-500 dark:hover:border-primary-400 transition-all overflow-hidden"
-                initial={{ opacity: 0, scale: 0.8, y: 50 }}
-                animate={pipelineStarted ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.8, y: 50 }}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: pipelineStarted ? index * 0.25 : 0,
-                  type: "spring",
-                  stiffness: 100,
-                  damping: 15
-                }}
-                whileTap={{ scale: 0.95 }}
+                className="group relative bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-xl p-6 pt-12 border-2 border-gray-200 dark:border-gray-600 cursor-pointer hover:border-primary-500 dark:hover:border-primary-400 transition-all overflow-hidden"
                 onClick={() => setExpandedValue(expandedValue === index ? null : index)}
               >
                 {/* Pipeline stage indicator */}
                 {pipelineStarted && (
                   <motion.div 
-                    className="absolute -top-3 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center text-white text-sm font-bold shadow-lg"
+                    className="absolute -top-3 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center text-white text-sm font-bold shadow-lg z-20"
                     initial={{ scale: 0, rotate: -180 }}
                     animate={{ scale: 1, rotate: 0 }}
                     transition={{ 
@@ -521,7 +511,7 @@ export default function AboutPage() {
                 {/* Pipeline status badge - appears after card loads */}
                 {pipelineStarted && (
                   <motion.div
-                    className="absolute top-3 right-3 px-2 py-1 rounded-full text-xs font-semibold bg-green-500/20 dark:bg-green-400/20 text-green-700 dark:text-green-300 border border-green-500/50"
+                    className="absolute top-3 right-3 px-2 py-1 rounded-full text-xs font-semibold bg-green-500/20 dark:bg-green-400/20 text-green-700 dark:text-green-300 border border-green-500/50 z-20"
                     initial={{ opacity: 0, scale: 0, x: 20 }}
                     animate={{ opacity: 1, scale: 1, x: 0 }}
                     transition={{ 
@@ -580,7 +570,7 @@ export default function AboutPage() {
                     )}
                   </AnimatePresence>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

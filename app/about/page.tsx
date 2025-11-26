@@ -483,21 +483,50 @@ export default function AboutPage() {
               </div>
             )}
 
-            {values.map((value, index) => (
-              <div
-                key={index}
-                className="group relative bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-xl p-6 border-2 border-gray-200 dark:border-gray-600 cursor-pointer hover:border-primary-500 dark:hover:border-primary-400 transition-colors"
-                onClick={() => setExpandedValue(expandedValue === index ? null : index)}
-              >
-                {/* Pipeline stage indicator - Static position */}
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center text-white text-base font-bold shadow-lg border-2 border-white dark:border-gray-900 z-30">
-                  {index + 1}
-                </div>
+            {values.map((value, index) => {
+              const shouldShow = pipelineStarted && index === 0 ? true : 
+                                pipelineStarted && index <= values.findIndex((_, i) => i < index) + 1;
+              
+              return (
+                <motion.div
+                  key={index}
+                  className="group relative bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-xl p-6 border-2 border-gray-200 dark:border-gray-600 cursor-pointer hover:border-primary-500 dark:hover:border-primary-400 transition-colors"
+                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                  animate={pipelineStarted ? { 
+                    opacity: 1, 
+                    scale: 1, 
+                    y: 0,
+                    transition: {
+                      duration: 0.6,
+                      delay: index * 0.4,
+                      type: "spring",
+                      stiffness: 100
+                    }
+                  } : { opacity: 0, scale: 0.8, y: 20 }}
+                  onClick={() => setExpandedValue(expandedValue === index ? null : index)}
+                >
+                  {/* Pipeline stage indicator - Static position */}
+                  <motion.div 
+                    className="absolute -top-4 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center text-white text-base font-bold shadow-lg border-2 border-white dark:border-gray-900 z-30"
+                    initial={{ scale: 0, rotate: -180 }}
+                    animate={pipelineStarted ? {
+                      scale: 1,
+                      rotate: 0,
+                      transition: {
+                        duration: 0.5,
+                        delay: index * 0.4 + 0.2,
+                        type: "spring",
+                        stiffness: 200
+                      }
+                    } : { scale: 0, rotate: -180 }}
+                  >
+                    {index + 1}
+                  </motion.div>
 
-                {/* Gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 to-accent-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
-                
-                <div className="relative z-10 mt-4">
+                  {/* Gradient overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 to-accent-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
+                  
+                  <div className="relative z-10 mt-4">
                   <div className="flex items-start justify-between mb-3">
                     <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                       {value.title}
@@ -542,8 +571,9 @@ export default function AboutPage() {
                     )}
                   </AnimatePresence>
                 </div>
-              </div>
-            ))}
+              </motion.div>
+            );
+            })}
           </div>
         </div>
       </section>

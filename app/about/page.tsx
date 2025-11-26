@@ -446,20 +446,69 @@ export default function AboutPage() {
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+            {/* Pipeline connector lines */}
+            <div className="hidden lg:block absolute top-16 left-0 right-0 h-1 pointer-events-none">
+              <motion.div
+                className="h-full bg-gradient-to-r from-primary-500 via-accent-500 to-primary-600"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.5, delay: 0.3, ease: "easeInOut" }}
+                style={{ transformOrigin: 'left' }}
+              />
+            </div>
+
             {values.map((value, index) => (
               <motion.div
                 key={index}
-                className="group relative bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-xl p-6 border border-gray-200 dark:border-gray-600 cursor-pointer hover:border-primary-500 dark:hover:border-primary-400 transition-all overflow-hidden"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                className="group relative bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-xl p-6 border-2 border-gray-200 dark:border-gray-600 cursor-pointer hover:border-primary-500 dark:hover:border-primary-400 transition-all overflow-hidden"
+                initial={{ opacity: 0, scale: 0.8, y: 50 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: index * 0.25,
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 15
+                }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setExpandedValue(expandedValue === index ? null : index)}
               >
+                {/* Pipeline stage indicator */}
+                <motion.div 
+                  className="absolute -top-3 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center text-white text-sm font-bold shadow-lg"
+                  initial={{ scale: 0, rotate: -180 }}
+                  whileInView={{ scale: 1, rotate: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ 
+                    duration: 0.5, 
+                    delay: index * 0.25 + 0.3,
+                    type: "spring",
+                    stiffness: 200
+                  }}
+                >
+                  {index + 1}
+                </motion.div>
                 {/* Gradient overlay on hover */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 to-accent-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                {/* Pipeline status badge - appears after card loads */}
+                <motion.div
+                  className="absolute top-3 right-3 px-2 py-1 rounded-full text-xs font-semibold bg-green-500/20 dark:bg-green-400/20 text-green-700 dark:text-green-300 border border-green-500/50"
+                  initial={{ opacity: 0, scale: 0, x: 20 }}
+                  whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ 
+                    duration: 0.4, 
+                    delay: index * 0.25 + 0.5,
+                    type: "spring",
+                    stiffness: 150
+                  }}
+                >
+                  ✓ Active
+                </motion.div>
                 
                 <div className="relative z-10">
                   <div className="flex items-start justify-between mb-3">

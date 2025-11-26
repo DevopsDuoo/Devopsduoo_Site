@@ -55,7 +55,7 @@ export default function AboutPage() {
       role: 'Co-Founder & DevOps Engineer',
       experience: '5+ Years',
       image: '/team/member2.jpg',
-      bio: 'Expert in CI/CD pipelines, monitoring, and infrastructure automation.',
+      bio: 'Expert in CI/CD pipelines, monitoring & Logging, and infrastructure automation.',
       skills: [
         { name: 'Jenkins', level: 93, icon: FaJenkins },
         { name: 'Ansible', level: 90, icon: SiAnsible },

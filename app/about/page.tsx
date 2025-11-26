@@ -490,7 +490,7 @@ export default function AboutPage() {
               return (
                 <motion.div
                   key={index}
-                  className="group relative bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-xl p-6 border-2 border-gray-200 dark:border-gray-600 cursor-pointer hover:border-primary-500 dark:hover:border-primary-400 transition-colors"
+                  className="group relative bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-xl p-6 border-2 border-gray-200 dark:border-gray-600 hover:border-primary-500 dark:hover:border-primary-400 transition-colors"
                   initial={{ opacity: 0, scale: 0.8, y: 20 }}
                   animate={pipelineStarted ? { 
                     opacity: 1, 
@@ -503,7 +503,6 @@ export default function AboutPage() {
                       stiffness: 100
                     }
                   } : { opacity: 0, scale: 0.8, y: 20 }}
-                  onClick={() => setExpandedValue(expandedValue === index ? null : index)}
                 >
                   {/* Pipeline stage indicator - Static position */}
                   <motion.div 
@@ -527,49 +526,27 @@ export default function AboutPage() {
                   <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 to-accent-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
                   
                   <div className="relative z-10 mt-4">
-                  <div className="flex items-start justify-between mb-3">
-                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                  <div className="mb-4">
+                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors mb-3">
                       {value.title}
                     </h3>
-                    <motion.div
-                      className="text-primary-600 dark:text-primary-400 text-sm"
-                      animate={{ rotate: expandedValue === index ? 180 : 0 }}
-                      transition={{ duration: 0.3, type: "spring", stiffness: 200 }}
-                    >
-                      ▼
-                    </motion.div>
-                  </div>
-                  
-                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
-                    {value.description}
-                  </p>
-                  
-                  <AnimatePresence>
-                    {expandedValue === index && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="overflow-hidden"
-                      >
-                        <div className="pt-3 border-t border-gray-300 dark:border-gray-600 space-y-2">
-                          {value.examples.map((example, exIndex) => (
-                            <motion.div
-                              key={exIndex}
-                              className="flex items-center gap-2 text-gray-700 dark:text-gray-300"
-                              initial={{ opacity: 0, x: -10 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: exIndex * 0.08, duration: 0.3 }}
-                            >
-                              <span className="w-1.5 h-1.5 bg-primary-600 dark:text-primary-400 rounded-full"></span>
-                              <span className="text-xs sm:text-sm">{example}</span>
-                            </motion.div>
-                          ))}
+                    
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                      {value.description}
+                    </p>
+                    
+                    <div className="pt-3 border-t border-gray-300 dark:border-gray-600 space-y-2">
+                      {value.examples.map((example, exIndex) => (
+                        <div
+                          key={exIndex}
+                          className="flex items-center gap-2 text-gray-700 dark:text-gray-300"
+                        >
+                          <span className="w-1.5 h-1.5 bg-primary-600 dark:bg-primary-400 rounded-full"></span>
+                          <span className="text-xs sm:text-sm">{example}</span>
                         </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             );

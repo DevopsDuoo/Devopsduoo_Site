@@ -85,10 +85,24 @@ A modern, fully animated service-based company website built with Next.js 14, Ty
 
 ## 📱 Mobile-Friendly Design
 
-The website is fully responsive with breakpoints at:
-- **Mobile**: < 768px
-- **Tablet**: 768px - 1024px
+The website is fully responsive and optimized for mobile devices:
+
+### Breakpoints:
+- **Mobile**: < 640px (phones)
+- **Tablet**: 640px - 1024px
 - **Desktop**: > 1024px
+
+### Mobile Optimizations:
+- **Progressive Typography**: Text scales from 3xl on mobile to 7xl on desktop
+- **Touch-Optimized**: 44px minimum tap targets for all interactive elements
+- **Full-Width Buttons**: Buttons span full width on mobile for easy tapping
+- **Reduced Spacing**: Optimized padding and margins for smaller screens
+- **Responsive Images**: Icons scale from 4xl to 5xl based on screen size
+- **Mobile Navigation**: Hamburger menu with smooth slide animations
+- **No Zoom on Input**: Input fields sized to prevent iOS auto-zoom
+- **Touch Gestures**: Optimized animations for touch devices
+
+See `MOBILE_OPTIMIZATION.md` for detailed mobile enhancements.
 
 ## 🎨 Customization
 

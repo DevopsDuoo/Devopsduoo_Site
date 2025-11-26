@@ -48,7 +48,7 @@ export default function GlobalEnhancements() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.5, y: 100 }}
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 z-50 p-4 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-full shadow-2xl hover:shadow-primary-500/50 transition-all duration-300 group"
+            className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-50 p-3 sm:p-4 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-full shadow-2xl hover:shadow-primary-500/50 transition-all duration-300 group"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             aria-label="Back to top"
@@ -57,11 +57,11 @@ export default function GlobalEnhancements() {
               animate={{ y: [0, -3, 0] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             >
-              <FaArrowUp className="text-xl" />
+              <FaArrowUp className="text-lg sm:text-xl" />
             </motion.div>
             
-            {/* Tooltip */}
-            <span className="absolute bottom-full right-0 mb-2 px-3 py-1 bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+            {/* Tooltip - hidden on mobile */}
+            <span className="hidden sm:block absolute bottom-full right-0 mb-2 px-3 py-1 bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
               Back to top
             </span>
           </motion.button>
@@ -75,28 +75,28 @@ export default function GlobalEnhancements() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed bottom-8 left-8 z-50 md:hidden"
+            className="fixed bottom-6 left-6 z-40 md:hidden"
           >
-            <svg className="w-12 h-12 transform -rotate-90">
+            <svg className="w-10 h-10 sm:w-12 sm:h-12 transform -rotate-90">
               <circle
-                cx="24"
-                cy="24"
-                r="20"
+                cx="20"
+                cy="20"
+                r="16"
                 stroke="currentColor"
-                strokeWidth="3"
+                strokeWidth="2.5"
                 fill="none"
                 className="text-gray-300 dark:text-gray-700"
               />
               <motion.circle
-                cx="24"
-                cy="24"
-                r="20"
+                cx="20"
+                cy="20"
+                r="16"
                 stroke="url(#gradient)"
-                strokeWidth="3"
+                strokeWidth="2.5"
                 fill="none"
                 strokeLinecap="round"
-                strokeDasharray={`${2 * Math.PI * 20}`}
-                strokeDashoffset={`${2 * Math.PI * 20 * (1 - scrollProgress / 100)}`}
+                strokeDasharray={`${2 * Math.PI * 16}`}
+                strokeDashoffset={`${2 * Math.PI * 16 * (1 - scrollProgress / 100)}`}
                 className="transition-all duration-300"
               />
               <defs>
@@ -106,7 +106,7 @@ export default function GlobalEnhancements() {
                 </linearGradient>
               </defs>
             </svg>
-            <div className="absolute inset-0 flex items-center justify-center text-xs font-bold text-primary-600 dark:text-primary-400">
+            <div className="absolute inset-0 flex items-center justify-center text-[10px] sm:text-xs font-bold text-primary-600 dark:text-primary-400">
               {Math.round(scrollProgress)}%
             </div>
           </motion.div>

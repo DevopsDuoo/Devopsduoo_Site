@@ -99,42 +99,42 @@ export default function Home() {
 
   const services = [
     {
-      icon: <FaCloud className="text-5xl" />,
+      icon: <FaCloud className="text-4xl sm:text-5xl" />,
       title: 'Cloud Infrastructure',
       description: 'Design and implement scalable cloud solutions on AWS, Azure, and GCP.',
       link: '/services#cloud',
       gradient: 'from-blue-500 to-cyan-500',
     },
     {
-      icon: <FaCodeBranch className="text-5xl" />,
+      icon: <FaCodeBranch className="text-4xl sm:text-5xl" />,
       title: 'CI/CD Pipeline',
       description: 'Automate your deployment process with robust CI/CD pipelines.',
       link: '/services#cicd',
       gradient: 'from-purple-500 to-pink-500',
     },
     {
-      icon: <FaServer className="text-5xl" />,
+      icon: <FaServer className="text-4xl sm:text-5xl" />,
       title: 'Container Orchestration',
       description: 'Master Docker and Kubernetes for efficient container management.',
       link: '/services#containers',
       gradient: 'from-green-500 to-teal-500',
     },
     {
-      icon: <FaChartLine className="text-5xl" />,
+      icon: <FaChartLine className="text-4xl sm:text-5xl" />,
       title: 'Monitoring & Logging',
       description: 'Comprehensive monitoring solutions for system reliability.',
       link: '/services#monitoring',
       gradient: 'from-orange-500 to-red-500',
     },
     {
-      icon: <FaShieldAlt className="text-5xl" />,
+      icon: <FaShieldAlt className="text-4xl sm:text-5xl" />,
       title: 'Security & Compliance',
       description: 'Implement security best practices and ensure compliance.',
       link: '/services#security',
       gradient: 'from-indigo-500 to-purple-500',
     },
     {
-      icon: <FaRocket className="text-5xl" />,
+      icon: <FaRocket className="text-4xl sm:text-5xl" />,
       title: 'DevOps Automation',
       description: 'Streamline operations with intelligent automation solutions.',
       link: '/services#automation',
@@ -329,7 +329,7 @@ export default function Home() {
           </div>
         ))}
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 md:py-32 text-center">
           {/* Content Overlay for Better Readability */}
           <div className="absolute inset-0 bg-white/10 dark:bg-gray-900/10 backdrop-blur-sm rounded-3xl" />
           
@@ -340,16 +340,16 @@ export default function Home() {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <motion.h1
-              className="text-5xl md:text-7xl font-bold text-neutral-900 dark:text-white mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-neutral-900 dark:text-white mb-4 sm:mb-6 px-2"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-500 via-accent-500 to-primary-600">The DevOps Duoo</span>
+              Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-500 via-accent-500 to-primary-600 block sm:inline">The DevOps Duoo</span>
             </motion.h1>
             
             <motion.p
-              className="text-xl md:text-2xl text-neutral-700 dark:text-neutral-300 mb-12 max-w-3xl mx-auto"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-neutral-700 dark:text-neutral-300 mb-8 sm:mb-12 max-w-3xl mx-auto px-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -359,14 +359,14 @@ export default function Home() {
             </motion.p>
 
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               <Link href="/contact">
                 <motion.button
-                  className="px-8 py-4 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-full text-lg font-semibold shadow-lg"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-full text-base sm:text-lg font-semibold shadow-lg"
                   whileHover={{ scale: 1.03, boxShadow: "0 20px 40px rgba(99, 102, 241, 0.3)" }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ duration: 0.2 }}
@@ -376,7 +376,7 @@ export default function Home() {
               </Link>
               <Link href="/about">
                 <motion.button
-                  className="px-8 py-4 bg-transparent border-2 border-gray-900 dark:border-white text-gray-900 dark:text-white rounded-full text-lg font-semibold"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-transparent border-2 border-gray-900 dark:border-white text-gray-900 dark:text-white rounded-full text-base sm:text-lg font-semibold"
                   whileHover={{ scale: 1.03, backgroundColor: "rgba(99, 102, 241, 0.05)" }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ duration: 0.2 }}
@@ -390,19 +390,19 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
+      <section className="py-12 sm:py-16 md:py-20 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 px-4">
               Our Services
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto px-4">
               Comprehensive DevOps solutions tailored to your business needs
             </p>
           </motion.div>
@@ -419,7 +419,7 @@ export default function Home() {
                 <motion.div
                   variants={itemVariants}
                   whileHover={{ y: -12, scale: 1.02 }}
-                  className="group relative bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 hover:border-transparent hover:shadow-2xl transition-all duration-300 cursor-pointer overflow-hidden"
+                  className="group relative bg-white dark:bg-gray-900 p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 hover:border-transparent hover:shadow-2xl transition-all duration-300 cursor-pointer overflow-hidden"
                 >
                   {/* Animated gradient background on hover */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
@@ -434,22 +434,22 @@ export default function Home() {
                   
                   <div className="relative z-10">
                     <motion.div
-                      className={`text-primary-600 dark:text-primary-400 mb-4 group-hover:bg-gradient-to-br group-hover:${service.gradient} group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300`}
+                      className={`text-primary-600 dark:text-primary-400 mb-4 text-4xl sm:text-5xl group-hover:bg-gradient-to-br group-hover:${service.gradient} group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300`}
                       whileHover={{ scale: 1.15, rotate: 5 }}
                       transition={{ duration: 0.3 }}
                     >
                       {service.icon}
                     </motion.div>
-                    <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary-600 group-hover:to-accent-600 transition-all duration-300">
+                    <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary-600 group-hover:to-accent-600 transition-all duration-300">
                       {service.title}
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-400 mb-4">
+                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-3 sm:mb-4">
                       {service.description}
                     </p>
                     
                     {/* Learn more arrow that appears on hover */}
                     <motion.div
-                      className="flex items-center text-primary-600 dark:text-primary-400 font-semibold"
+                      className="flex items-center text-primary-600 dark:text-primary-400 font-semibold text-sm sm:text-base"
                       initial={{ opacity: 0, x: -10 }}
                       whileHover={{ opacity: 1, x: 0 }}
                     >
@@ -473,11 +473,11 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-center mt-12"
+            className="text-center mt-8 sm:mt-12"
           >
             <Link href="/services">
               <motion.button
-                className="px-8 py-4 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-full text-lg font-semibold shadow-lg"
+                className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-full text-base sm:text-lg font-semibold shadow-lg"
                 whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(99, 102, 241, 0.3)" }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -489,14 +489,14 @@ export default function Home() {
       </section>
 
       {/* Stats Section with Animated Counters */}
-      <section className="py-20 bg-gradient-to-r from-primary-600 to-accent-600">
+      <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-r from-primary-600 to-accent-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 text-center"
           >
             {[
               { number: 500, label: 'Projects Completed', suffix: '+' },
@@ -517,7 +517,7 @@ export default function Home() {
                   onViewportEnter={() => setInView(true)}
                 >
                   <motion.h3
-                    className="text-4xl md:text-5xl font-bold text-white mb-2"
+                    className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-1 sm:mb-2"
                     initial={{ scale: 0.5 }}
                     whileInView={{ scale: 1 }}
                     viewport={{ once: true }}
@@ -525,7 +525,7 @@ export default function Home() {
                   >
                     {stat.suffix === '%' ? count.toFixed(1) : count}{stat.suffix}
                   </motion.h3>
-                  <p className="text-white/90">{stat.label}</p>
+                  <p className="text-white/90 text-sm sm:text-base px-2">{stat.label}</p>
                 </motion.div>
               );
             })}
@@ -534,7 +534,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
+      <section className="py-12 sm:py-16 md:py-20 bg-white dark:bg-gray-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -542,15 +542,15 @@ export default function Home() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 px-4">
               Ready to Transform Your Infrastructure?
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-6 sm:mb-8 px-4">
               Let's discuss how we can help accelerate your DevOps journey
             </p>
             <Link href="/contact">
               <motion.button
-                className="px-10 py-5 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-full text-xl font-semibold shadow-2xl"
+                className="px-8 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-full text-lg sm:text-xl font-semibold shadow-2xl"
                 whileHover={{ scale: 1.05, boxShadow: "0 25px 50px rgba(99, 102, 241, 0.4)" }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.2 }}

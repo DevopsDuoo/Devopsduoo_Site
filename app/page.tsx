@@ -186,72 +186,83 @@ export default function Home() {
   useEffect(() => {
     if (icons.length === 0) return;
 
+    let lastTime = Date.now();
+    const frameRate = 1000 / 60; // 60 FPS target
+
     const animate = () => {
-      setIcons(prevIcons => {
-        const newIcons = prevIcons.map(icon => {
-          let { x, y, vx, vy } = icon;
+      const currentTime = Date.now();
+      const deltaTime = currentTime - lastTime;
 
-          // Update position
-          x += vx;
-          y += vy;
+      // Only update if enough time has passed (throttle to ~60fps)
+      if (deltaTime >= frameRate) {
+        lastTime = currentTime;
 
-          // Bounce off walls
-          if (x <= 5 || x >= 95) {
-            vx = -vx;
-            x = x <= 5 ? 5 : 95;
-          }
-          if (y <= 5 || y >= 95) {
-            vy = -vy;
-            y = y <= 5 ? 5 : 95;
-          }
+        setIcons(prevIcons => {
+          const newIcons = prevIcons.map(icon => {
+            let { x, y, vx, vy } = icon;
 
-          return { ...icon, x, y, vx, vy };
-        });
+            // Update position
+            x += vx;
+            y += vy;
 
-        // Check for collisions between icons
-        for (let i = 0; i < newIcons.length; i++) {
-          for (let j = i + 1; j < newIcons.length; j++) {
-            const icon1 = newIcons[i];
-            const icon2 = newIcons[j];
+            // Bounce off walls
+            if (x <= 5 || x >= 95) {
+              vx = -vx;
+              x = x <= 5 ? 5 : 95;
+            }
+            if (y <= 5 || y >= 95) {
+              vy = -vy;
+              y = y <= 5 ? 5 : 95;
+            }
 
-            const dx = icon2.x - icon1.x;
-            const dy = icon2.y - icon1.y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
+            return { ...icon, x, y, vx, vy };
+          });
 
-            // Collision detection (icons are about 8% of container width)
-            if (distance < 10) {
-              // Calculate bounce angles
-              const angle = Math.atan2(dy, dx);
-              const sin = Math.sin(angle);
-              const cos = Math.cos(angle);
+          // Check for collisions between icons
+          for (let i = 0; i < newIcons.length; i++) {
+            for (let j = i + 1; j < newIcons.length; j++) {
+              const icon1 = newIcons[i];
+              const icon2 = newIcons[j];
 
-              // Swap velocities for elastic collision
-              const vx1 = icon1.vx * cos + icon1.vy * sin;
-              const vy1 = icon1.vy * cos - icon1.vx * sin;
-              const vx2 = icon2.vx * cos + icon2.vy * sin;
-              const vy2 = icon2.vy * cos - icon2.vx * sin;
+              const dx = icon2.x - icon1.x;
+              const dy = icon2.y - icon1.y;
+              const distance = Math.sqrt(dx * dx + dy * dy);
 
-              // Update velocities after collision
-              icon1.vx = vx2 * cos - vy1 * sin;
-              icon1.vy = vy1 * cos + vx2 * sin;
-              icon2.vx = vx1 * cos - vy2 * sin;
-              icon2.vy = vy2 * cos + vx1 * sin;
+              // Collision detection (icons are about 8% of container width)
+              if (distance < 10) {
+                // Calculate bounce angles
+                const angle = Math.atan2(dy, dx);
+                const sin = Math.sin(angle);
+                const cos = Math.cos(angle);
 
-              // Separate icons to prevent overlap
-              const overlap = 10 - distance;
-              const separationX = (overlap / 2) * cos;
-              const separationY = (overlap / 2) * sin;
-              
-              icon1.x -= separationX;
-              icon1.y -= separationY;
-              icon2.x += separationX;
-              icon2.y += separationY;
+                // Swap velocities for elastic collision
+                const vx1 = icon1.vx * cos + icon1.vy * sin;
+                const vy1 = icon1.vy * cos - icon1.vx * sin;
+                const vx2 = icon2.vx * cos + icon2.vy * sin;
+                const vy2 = icon2.vy * cos - icon2.vx * sin;
+
+                // Update velocities after collision
+                icon1.vx = vx2 * cos - vy1 * sin;
+                icon1.vy = vy1 * cos + vx2 * sin;
+                icon2.vx = vx1 * cos - vy2 * sin;
+                icon2.vy = vy2 * cos + vx1 * sin;
+
+                // Separate icons to prevent overlap
+                const overlap = 10 - distance;
+                const separationX = (overlap / 2) * cos;
+                const separationY = (overlap / 2) * sin;
+                
+                icon1.x -= separationX;
+                icon1.y -= separationY;
+                icon2.x += separationX;
+                icon2.y += separationY;
+              }
             }
           }
-        }
 
-        return newIcons;
-      });
+          return newIcons;
+        });
+      }
 
       animationFrameRef.current = requestAnimationFrame(animate);
     };
@@ -315,19 +326,22 @@ export default function Home() {
         </div>
 
         {/* Physics-based Floating DevOps Icons with Collision Detection */}
-        {icons.map((icon) => (
-          <div
-            key={icon.id}
-            className="absolute text-primary-600/30 dark:text-primary-400/25 pointer-events-none transition-all duration-100 ease-linear"
-            style={{
-              left: `${icon.x}%`,
-              top: `${icon.y}%`,
-              transform: 'translate(-50%, -50%)',
-            }}
-          >
-            <icon.Icon size={icon.size} />
-          </div>
-        ))}
+        <div className="absolute inset-0 pointer-events-none">
+          {icons.map((icon) => (
+            <div
+              key={icon.id}
+              className="absolute text-primary-600/30 dark:text-primary-400/25 will-change-transform"
+              style={{
+                left: `${icon.x}%`,
+                top: `${icon.y}%`,
+                transform: 'translate(-50%, -50%)',
+                pointerEvents: 'none',
+              }}
+            >
+              <icon.Icon size={icon.size} />
+            </div>
+          ))}
+        </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 md:py-32 text-center">
           {/* Content Overlay for Better Readability */}

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { 
   FaLinkedin, 
@@ -8,7 +8,11 @@ import {
   FaTwitter,
   FaAws,
   FaDocker,
-  FaJenkins
+  FaJenkins,
+  FaChartLine,
+  FaUsers,
+  FaRocket,
+  FaShieldAlt
 } from 'react-icons/fa';
 import { 
   SiKubernetes, 
@@ -18,7 +22,7 @@ import {
 } from 'react-icons/si';
 
 export default function AboutPage() {
-  const [flippedCard, setFlippedCard] = useState<number | null>(null);
+  const [selectedMember, setSelectedMember] = useState<number | null>(null);
   const [expandedValue, setExpandedValue] = useState<number | null>(null);
 
   const teamMembers = [
@@ -95,10 +99,11 @@ export default function AboutPage() {
 
   return (
     <div className="relative overflow-hidden bg-white dark:bg-gray-900">
-      <section className="relative min-h-[40vh] flex items-center justify-center bg-gradient-to-br from-primary-100 via-gray-50 to-accent-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      {/* Hero Section */}
+      <section className="relative min-h-[40vh] sm:min-h-[50vh] flex items-center justify-center bg-gradient-to-br from-primary-100 via-gray-50 to-accent-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
-            className="absolute top-20 right-10 w-96 h-96 bg-primary-500 dark:bg-primary-600 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-20 dark:opacity-10"
+            className="absolute top-20 right-10 w-72 h-72 sm:w-96 sm:h-96 bg-primary-500 dark:bg-primary-600 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-20 dark:opacity-10"
             animate={{
               scale: [1, 1.2, 1],
               opacity: [0.2, 0.3, 0.2],
@@ -111,9 +116,9 @@ export default function AboutPage() {
           />
         </div>
 
-        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 text-center">
           <motion.h1
-            className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6"
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -122,7 +127,7 @@ export default function AboutPage() {
           </motion.h1>
           
           <motion.p
-            className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto"
+            className="text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto px-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -132,261 +137,407 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-white dark:bg-gray-900">
+      {/* Story Section with Stats */}
+      <section className="py-12 sm:py-16 md:py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">Our Mission</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-4xl mx-auto">
-              We strive to bridge the gap between development and operations, enabling businesses to deliver software faster, 
-              more reliably, and with greater efficiency through modern DevOps practices and continuous innovation.
-            </p>
-          </motion.div>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Story Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+                Our Story
+              </h2>
+              <div className="space-y-4 text-gray-700 dark:text-gray-300">
+                <p className="text-base sm:text-lg">
+                  Founded by two passionate DevOps engineers with over 5 years of experience each, 
+                  DevOps Duoo was born from a vision to simplify and accelerate digital transformation 
+                  for businesses of all sizes.
+                </p>
+                <p className="text-base sm:text-lg">
+                  We combine deep technical expertise with practical, hands-on experience to deliver 
+                  solutions that not only meet but exceed our clients&apos; expectations.
+                </p>
+                <p className="text-base sm:text-lg">
+                  Our mission is to bridge the gap between development and operations, enabling businesses 
+                  to deliver software faster, more reliably, and with greater efficiency.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Quick Stats */}
+            <motion.div
+              className="grid grid-cols-2 gap-6"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              {[
+                { icon: FaRocket, number: '10+', label: 'Years Combined Experience' },
+                { icon: FaUsers, number: '50+', label: 'Projects Delivered' },
+                { icon: FaChartLine, number: '99.9%', label: 'Client Satisfaction' },
+                { icon: FaShieldAlt, number: '24/7', label: 'Support Available' },
+              ].map((stat, index) => (
+                <motion.div
+                  key={index}
+                  className="bg-gradient-to-br from-primary-50 to-accent-50 dark:from-gray-800 dark:to-gray-700 p-6 rounded-xl border border-primary-200 dark:border-gray-600 text-center"
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <stat.icon className="text-3xl sm:text-4xl text-primary-600 dark:text-primary-400 mx-auto mb-3" />
+                  <div className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-1">
+                    {stat.number}
+                  </div>
+                  <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+                    {stat.label}
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
+      {/* Team Section - Redesigned */}
+      <section className="py-12 sm:py-16 md:py-20 bg-gray-50 dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Meet Our Team</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400">
-              Certified DevOps experts with 5+ years of hands-on experience
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
+              Meet Our Founders
+            </h2>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400">
+              Certified DevOps experts passionate about innovation
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
             {teamMembers.map((member, index) => (
               <motion.div
                 key={index}
-                className="relative h-[600px] cursor-pointer"
-                style={{ perspective: '1000px' }}
-                onClick={() => setFlippedCard(flippedCard === index ? null : index)}
+                className="group relative"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
               >
-                <motion.div
-                  className="relative w-full h-full"
-                  style={{ transformStyle: 'preserve-3d' }}
-                  animate={{ rotateY: flippedCard === index ? 180 : 0 }}
-                  transition={{ duration: 0.6, type: 'spring', stiffness: 100 }}
-                >
-                  <div
-                    className="absolute w-full h-full bg-white dark:bg-gray-900 rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-700"
-                    style={{ backfaceVisibility: 'hidden' }}
-                  >
-                    <div className="flex flex-col items-center h-full">
-                      <div className="w-32 h-32 bg-gradient-to-br from-primary-500 to-accent-500 rounded-full mb-6 flex items-center justify-center text-white text-4xl font-bold">
+                <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-2xl transition-all duration-300">
+                  {/* Card Header */}
+                  <div className="bg-gradient-to-r from-primary-600 to-accent-600 p-6 sm:p-8">
+                    <div className="flex items-center gap-4">
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white text-2xl sm:text-3xl font-bold border-2 border-white/30">
                         {member.name.split(' ').map(n => n[0]).join('')}
                       </div>
-                      
-                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 text-center">
-                        {member.name}
-                      </h3>
-                      <p className="text-primary-600 dark:text-primary-400 font-semibold mb-2">
-                        {member.role}
-                      </p>
-                      <p className="text-gray-600 dark:text-gray-400 mb-6">
-                        {member.experience} Experience
-                      </p>
-                      
-                      <p className="text-gray-700 dark:text-gray-300 text-center mb-8">
-                        {member.bio}
-                      </p>
-
-                      <div className="mt-auto">
-                        <div className="flex gap-4 mb-6">
-                          <a href={member.social.linkedin} className="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-                            <FaLinkedin size={20} />
-                          </a>
-                          <a href={member.social.github} className="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
-                            <FaGithub size={20} />
-                          </a>
-                          <a href={member.social.twitter} className="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-                            <FaTwitter size={20} />
-                          </a>
-                        </div>
-                        
-                        <div className="text-center text-sm text-gray-500 dark:text-gray-400 bg-primary-50 dark:bg-primary-900/20 py-2 px-4 rounded-lg">
-                          Click to see skills & certifications
-                        </div>
+                      <div className="flex-1">
+                        <h3 className="text-xl sm:text-2xl font-bold text-white mb-1">
+                          {member.name}
+                        </h3>
+                        <p className="text-white/90 text-sm sm:text-base font-medium">
+                          {member.role}
+                        </p>
+                        <p className="text-white/80 text-xs sm:text-sm">
+                          {member.experience} Experience
+                        </p>
                       </div>
                     </div>
                   </div>
 
-                  <div
-                    className="absolute w-full h-full bg-gradient-to-br from-primary-50 to-accent-50 dark:from-gray-900 dark:to-gray-800 rounded-2xl shadow-xl p-8 border-2 border-primary-500 dark:border-primary-600"
-                    style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
-                  >
-                    <div className="flex flex-col h-full">
-                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-                        Skills & Expertise
-                      </h3>
-                      
-                      <div className="space-y-4 mb-8">
-                        {member.skills.map((skill, skillIndex) => (
-                          <div key={skillIndex}>
-                            <div className="flex items-center justify-between mb-2">
-                              <div className="flex items-center gap-2">
-                                <skill.icon className="text-primary-600 dark:text-primary-400" />
-                                <span className="text-gray-900 dark:text-white font-medium">{skill.name}</span>
-                              </div>
-                              <span className="text-gray-600 dark:text-gray-400">{skill.level}%</span>
-                            </div>
-                            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                              <motion.div
-                                className="bg-gradient-to-r from-primary-600 to-accent-600 h-2 rounded-full"
-                                initial={{ width: 0 }}
-                                animate={{ width: flippedCard === index ? `${skill.level}%` : 0 }}
-                                transition={{ duration: 1, delay: skillIndex * 0.1 }}
-                              />
-                            </div>
-                          </div>
+                  {/* Card Body */}
+                  <div className="p-6 sm:p-8">
+                    <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-6">
+                      {member.bio}
+                    </p>
+
+                    {/* Skills Preview - Top 3 */}
+                    <div className="mb-6">
+                      <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-3 flex items-center gap-2">
+                        <span>Top Skills</span>
+                        <span className="text-xs text-gray-500 dark:text-gray-400">({member.skills.length} total)</span>
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {member.skills.slice(0, 4).map((skill, skillIndex) => (
+                          <motion.div
+                            key={skillIndex}
+                            className="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 px-3 py-1.5 rounded-full text-sm"
+                            whileHover={{ scale: 1.05, backgroundColor: 'rgba(99, 102, 241, 0.1)' }}
+                          >
+                            <skill.icon className="text-primary-600 dark:text-primary-400" />
+                            <span className="text-gray-700 dark:text-gray-300 font-medium">{skill.name}</span>
+                          </motion.div>
                         ))}
                       </div>
+                    </div>
 
-                      <div className="mt-auto">
-                        <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-3">Certifications</h4>
-                        <ul className="space-y-2">
-                          {member.certifications.map((cert, certIndex) => (
-                            <motion.li
-                              key={certIndex}
-                              className="flex items-start gap-2 text-gray-700 dark:text-gray-300"
-                              initial={{ opacity: 0, x: -20 }}
-                              animate={{ opacity: flippedCard === index ? 1 : 0, x: flippedCard === index ? 0 : -20 }}
-                              transition={{ duration: 0.4, delay: certIndex * 0.1 }}
-                            >
-                              <span className="text-primary-600 dark:text-primary-400 mt-1">✓</span>
-                              <span className="text-sm">{cert}</span>
-                            </motion.li>
-                          ))}
-                        </ul>
-                        
-                        <div className="mt-6 text-center text-sm text-gray-600 dark:text-gray-400 bg-white/50 dark:bg-gray-800/50 py-2 px-4 rounded-lg">
-                          Click to flip back
-                        </div>
+                    {/* Certifications Count */}
+                    <div className="mb-6 p-4 bg-primary-50 dark:bg-primary-900/20 rounded-lg">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                          Certifications
+                        </span>
+                        <span className="text-2xl font-bold text-primary-600 dark:text-primary-400">
+                          {member.certifications.length}
+                        </span>
                       </div>
                     </div>
+
+                    {/* Action Button */}
+                    <motion.button
+                      onClick={() => setSelectedMember(selectedMember === index ? null : index)}
+                      className="w-full py-3 bg-gradient-to-r from-primary-600 to-accent-600 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      {selectedMember === index ? 'Hide Details' : 'View Full Profile'}
+                    </motion.button>
+
+                    {/* Social Links */}
+                    <div className="flex justify-center gap-4 mt-4">
+                      <motion.a
+                        href={member.social.linkedin}
+                        className="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                        whileHover={{ scale: 1.1, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <FaLinkedin size={20} />
+                      </motion.a>
+                      <motion.a
+                        href={member.social.github}
+                        className="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+                        whileHover={{ scale: 1.1, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <FaGithub size={20} />
+                      </motion.a>
+                      <motion.a
+                        href={member.social.twitter}
+                        className="w-10 h-10 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                        whileHover={{ scale: 1.1, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <FaTwitter size={20} />
+                      </motion.a>
+                    </div>
                   </div>
-                </motion.div>
+                </div>
+
+                {/* Expanded Details Modal */}
+                <AnimatePresence>
+                  {selectedMember === index && (
+                    <motion.div
+                      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      onClick={() => setSelectedMember(null)}
+                    >
+                      <motion.div
+                        className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+                        initial={{ scale: 0.9, y: 50 }}
+                        animate={{ scale: 1, y: 0 }}
+                        exit={{ scale: 0.9, y: 50 }}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        {/* Modal Header */}
+                        <div className="sticky top-0 bg-gradient-to-r from-primary-600 to-accent-600 p-6 z-10">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-4">
+                              <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white text-2xl font-bold border-2 border-white/30">
+                                {member.name.split(' ').map(n => n[0]).join('')}
+                              </div>
+                              <div>
+                                <h3 className="text-2xl font-bold text-white">{member.name}</h3>
+                                <p className="text-white/90">{member.role}</p>
+                              </div>
+                            </div>
+                            <button
+                              onClick={() => setSelectedMember(null)}
+                              className="text-white hover:bg-white/20 w-10 h-10 rounded-full flex items-center justify-center transition-colors"
+                            >
+                              ✕
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Modal Content */}
+                        <div className="p-6 sm:p-8">
+                          {/* All Skills */}
+                          <div className="mb-8">
+                            <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                              Technical Skills
+                            </h4>
+                            <div className="space-y-4">
+                              {member.skills.map((skill, skillIndex) => (
+                                <div key={skillIndex}>
+                                  <div className="flex items-center justify-between mb-2">
+                                    <div className="flex items-center gap-2">
+                                      <skill.icon className="text-primary-600 dark:text-primary-400 text-xl" />
+                                      <span className="text-gray-900 dark:text-white font-medium">{skill.name}</span>
+                                    </div>
+                                    <span className="text-gray-600 dark:text-gray-400 text-sm font-semibold">{skill.level}%</span>
+                                  </div>
+                                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
+                                    <motion.div
+                                      className="bg-gradient-to-r from-primary-600 to-accent-600 h-2.5 rounded-full"
+                                      initial={{ width: 0 }}
+                                      animate={{ width: `${skill.level}%` }}
+                                      transition={{ duration: 1, delay: skillIndex * 0.1 }}
+                                    />
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Certifications */}
+                          <div>
+                            <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                              Certifications & Credentials
+                            </h4>
+                            <div className="grid sm:grid-cols-2 gap-3">
+                              {member.certifications.map((cert, certIndex) => (
+                                <motion.div
+                                  key={certIndex}
+                                  className="flex items-start gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"
+                                  initial={{ opacity: 0, x: -20 }}
+                                  animate={{ opacity: 1, x: 0 }}
+                                  transition={{ duration: 0.4, delay: certIndex * 0.1 }}
+                                >
+                                  <span className="text-primary-600 dark:text-primary-400 mt-0.5 text-lg">✓</span>
+                                  <span className="text-sm text-gray-700 dark:text-gray-300 flex-1">{cert}</span>
+                                </motion.div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-20 bg-white dark:bg-gray-900">
+      {/* Core Values Section - More Compact */}
+      <section className="py-12 sm:py-16 md:py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Our Core Values</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400">
-              The principles that guide everything we do
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
+              Our Core Values
+            </h2>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400">
+              The principles that drive our success
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => (
               <motion.div
                 key={index}
-                className="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 cursor-pointer hover:border-primary-500 dark:hover:border-primary-500 transition-colors"
+                className="group relative bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-xl p-6 border border-gray-200 dark:border-gray-600 cursor-pointer hover:border-primary-500 dark:hover:border-primary-400 transition-all overflow-hidden"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ y: -8, scale: 1.02 }}
                 onClick={() => setExpandedValue(expandedValue === index ? null : index)}
               >
-                <div className="flex items-start justify-between mb-4">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{value.title}</h3>
-                  <motion.div
-                    className="text-primary-600 dark:text-primary-400 text-xl"
-                    animate={{ rotate: expandedValue === index ? 180 : 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    ▼
-                  </motion.div>
-                </div>
+                {/* Gradient overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 to-accent-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
-                <p className="text-gray-600 dark:text-gray-400 mb-4">{value.description}</p>
-                
-                <motion.div
-                  initial={false}
-                  animate={{ 
-                    height: expandedValue === index ? 'auto' : 0,
-                    opacity: expandedValue === index ? 1 : 0
-                  }}
-                  transition={{ duration: 0.3 }}
-                  className="overflow-hidden"
-                >
-                  <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
-                    <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">Key Aspects:</h4>
-                    <ul className="space-y-2">
-                      {value.examples.map((example, exIndex) => (
-                        <li key={exIndex} className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-                          <span className="w-1.5 h-1.5 bg-primary-600 rounded-full"></span>
-                          <span className="text-sm">{example}</span>
-                        </li>
-                      ))}
-                    </ul>
+                <div className="relative z-10">
+                  <div className="flex items-start justify-between mb-3">
+                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                      {value.title}
+                    </h3>
+                    <motion.div
+                      className="text-primary-600 dark:text-primary-400 text-sm"
+                      animate={{ rotate: expandedValue === index ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      ▼
+                    </motion.div>
                   </div>
-                </motion.div>
+                  
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                    {value.description}
+                  </p>
+                  
+                  <AnimatePresence>
+                    {expandedValue === index && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pt-3 border-t border-gray-300 dark:border-gray-600 space-y-2">
+                          {value.examples.map((example, exIndex) => (
+                            <motion.div
+                              key={exIndex}
+                              className="flex items-center gap-2 text-gray-700 dark:text-gray-300"
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: exIndex * 0.1 }}
+                            >
+                              <span className="w-1.5 h-1.5 bg-primary-600 dark:text-primary-400 rounded-full"></span>
+                              <span className="text-xs sm:text-sm">{example}</span>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-br from-primary-600 to-accent-600">
+      {/* CTA Section - Improved */}
+      <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-accent-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.h2
-            className="text-4xl font-bold text-white mb-6"
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            Ready to Transform Your Infrastructure?
-          </motion.h2>
-          
-          <motion.p
-            className="text-xl text-white/90 mb-8"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            Let&apos;s discuss how we can help accelerate your DevOps journey
-          </motion.p>
-          
-          <motion.a
-            href="/contact"
-            className="inline-block px-8 py-4 bg-white text-primary-600 font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all hover:scale-105"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Get In Touch
-          </motion.a>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 sm:mb-6">
+              Ready to Transform Your Infrastructure?
+            </h2>
+            
+            <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6 sm:mb-8">
+              Let&apos;s discuss how we can help accelerate your DevOps journey
+            </p>
+            
+            <motion.a
+              href="/contact"
+              className="inline-block px-8 sm:px-10 py-3 sm:py-4 bg-white text-primary-600 font-semibold rounded-full shadow-2xl hover:shadow-xl transition-all text-base sm:text-lg"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Get In Touch
+            </motion.a>
+          </motion.div>
         </div>
       </section>
     </div>

@@ -419,6 +419,7 @@ export default function ServicesPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            onViewportEnter={() => setServicesPipelineStarted(true)}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
               Core DevOps <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-accent-600">Services</span>
@@ -426,28 +427,6 @@ export default function ServicesPage() {
             <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-6">
               Enterprise-grade DevOps solutions
             </p>
-
-            {/* Pipeline Start Button */}
-            {!servicesPipelineStarted && (
-              <motion.button
-                onClick={() => setServicesPipelineStarted(true)}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary-600 to-accent-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span>▶</span> Start Pipeline
-              </motion.button>
-            )}
-            
-            {servicesPipelineStarted && (
-              <motion.div
-                className="inline-flex items-center gap-2 px-6 py-3 bg-green-500/20 text-green-700 dark:text-green-300 font-semibold rounded-lg border border-green-500/50"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-              >
-                <span className="animate-pulse">●</span> Pipeline Running
-              </motion.div>
-            )}
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative">

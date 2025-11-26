@@ -42,6 +42,7 @@ export default function ServicesPage() {
   const [consultationStep, setConsultationStep] = useState<number>(0);
   const [selectedProgram, setSelectedProgram] = useState<number | null>(null);
   const [revealedItems, setRevealedItems] = useState<{[key: number]: number}>({});
+  const [servicesPipelineStarted, setServicesPipelineStarted] = useState(false);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -422,24 +423,80 @@ export default function ServicesPage() {
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
               Core DevOps <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-accent-600">Services</span>
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-              Click on any service to explore detailed features
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-6">
+              Enterprise-grade DevOps solutions
             </p>
+
+            {/* Pipeline Start Button */}
+            {!servicesPipelineStarted && (
+              <motion.button
+                onClick={() => setServicesPipelineStarted(true)}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary-600 to-accent-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span>▶</span> Start Pipeline
+              </motion.button>
+            )}
+            
+            {servicesPipelineStarted && (
+              <motion.div
+                className="inline-flex items-center gap-2 px-6 py-3 bg-green-500/20 text-green-700 dark:text-green-300 font-semibold rounded-lg border border-green-500/50"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+              >
+                <span className="animate-pulse">●</span> Pipeline Running
+              </motion.div>
+            )}
           </motion.div>
 
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative">
+            {/* Pipeline connector lines */}
+            {servicesPipelineStarted && (
+              <div className="hidden lg:block absolute top-16 left-0 right-0 h-1 pointer-events-none">
+                <motion.div
+                  className="h-full bg-gradient-to-r from-primary-500 via-accent-500 to-primary-600"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ duration: 1.5, delay: 0.3, ease: "easeInOut" }}
+                  style={{ transformOrigin: 'left' }}
+                />
+              </div>
+            )}
             {coreServices.map((service, index) => (
               <motion.div
                 key={index}
-                variants={itemVariants}
                 className="relative"
+                initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                animate={servicesPipelineStarted ? { 
+                  opacity: 1, 
+                  scale: 1, 
+                  y: 0,
+                  transition: {
+                    duration: 0.6,
+                    delay: index * 0.4,
+                    type: "spring",
+                    stiffness: 100
+                  }
+                } : { opacity: 0, scale: 0.8, y: 20 }}
               >
+                {/* Pipeline stage indicator */}
+                {servicesPipelineStarted && (
+                  <motion.div 
+                    className="absolute -top-4 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br from-primary-500 to-accent-500 flex items-center justify-center text-white text-base font-bold shadow-lg border-2 border-white dark:border-gray-800 z-30"
+                    initial={{ scale: 0, rotate: -180 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ 
+                      duration: 0.5, 
+                      delay: index * 0.4 + 0.2,
+                      type: "spring",
+                      stiffness: 200
+                    }}
+                  >
+                    {index + 1}
+                  </motion.div>
+                )}
+
                 <motion.div
                   className={`group relative bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer ${
                     expandedService === index ? 'ring-4 ring-primary-500' : ''
@@ -503,7 +560,7 @@ export default function ServicesPage() {
                 </motion.div>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 

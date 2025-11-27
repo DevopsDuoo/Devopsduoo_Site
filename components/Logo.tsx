@@ -16,96 +16,92 @@ export default function Logo({
   animated = false
 }: LogoProps) {
   
-  // Icon variant - DevOps gears with infinity loop
+  // Icon variant - Circular badge with D arrow and circuit pattern
   if (variant === 'icon') {
     return (
       <svg 
         width={height} 
         height={height} 
-        viewBox="0 0 120 120" 
+        viewBox="0 0 200 200" 
         className={className}
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          <linearGradient id="iconGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#3B82F6" />
-            <stop offset="50%" stopColor="#06B6D4" />
-            <stop offset="100%" stopColor="#10B981" />
-          </linearGradient>
-          <linearGradient id="iconGradient2" x1="100%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#10B981" />
-            <stop offset="50%" stopColor="#06B6D4" />
+          <linearGradient id="circleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#06B6D4" />
             <stop offset="100%" stopColor="#3B82F6" />
+          </linearGradient>
+          <linearGradient id="arrowGrad" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stopColor="#3B82F6" />
+            <stop offset="100%" stopColor="#06B6D4" />
           </linearGradient>
         </defs>
         
-        {/* Outer circle border */}
-        <circle cx="60" cy="60" r="55" stroke="url(#iconGradient1)" strokeWidth="2.5" fill="none" opacity="0.3" />
-        
-        {/* Infinity loop connecting Dev and Ops */}
-        <path
-          d="M 30 60 C 30 45, 40 42, 45 53 C 50 64, 50 53, 60 60 C 70 67, 70 56, 75 53 C 80 42, 90 45, 90 60 C 90 75, 80 78, 75 67 C 70 56, 70 67, 60 60 C 50 53, 50 64, 45 67 C 40 78, 30 75, 30 60 Z"
-          fill="url(#iconGradient1)"
-          opacity="0.9"
-          className={animated ? 'animate-pulse' : ''}
-          style={{ animationDuration: '3s' }}
+        {/* Outer circle with gradient border */}
+        <circle 
+          cx="100" 
+          cy="100" 
+          r="90" 
+          fill="none" 
+          stroke="url(#circleGrad)" 
+          strokeWidth="4"
         />
         
-        {/* Left gear (Dev) */}
-        <g className={animated ? 'animate-spin-slow' : ''} style={{ transformOrigin: '35px 60px', animationDuration: '8s', animationDirection: 'reverse' }}>
-          <circle cx="35" cy="60" r="12" fill="#1E293B" className="dark:fill-gray-800" stroke="url(#iconGradient1)" strokeWidth="2" />
-          {/* Gear teeth */}
-          {[0, 60, 120, 180, 240, 300].map((angle) => {
-            const rad = (angle * Math.PI) / 180;
-            const x = 35 + Math.cos(rad) * 15;
-            const y = 60 + Math.sin(rad) * 15;
-            return (
-              <rect
-                key={angle}
-                x={x - 2}
-                y={y - 4}
-                width="4"
-                height="8"
-                fill="#06B6D4"
-                transform={`rotate(${angle}, ${x}, ${y})`}
-                rx="1"
-              />
-            );
-          })}
-          <circle cx="35" cy="60" r="5" fill="#3B82F6" />
+        {/* Circuit board pattern on left side forming part of D */}
+        <g opacity="0.9">
+          {/* Vertical circuit lines */}
+          <path d="M 60 50 L 60 80" stroke="#06B6D4" strokeWidth="2" fill="none" />
+          <path d="M 70 55 L 70 75" stroke="#06B6D4" strokeWidth="2" fill="none" />
+          <path d="M 55 60 L 55 85" stroke="#3B82F6" strokeWidth="2" fill="none" />
+          
+          {/* Horizontal connecting lines */}
+          <path d="M 55 60 L 70 60" stroke="#06B6D4" strokeWidth="2" fill="none" />
+          <path d="M 55 75 L 70 75" stroke="#3B82F6" strokeWidth="2" fill="none" />
+          
+          {/* Circuit nodes */}
+          <circle cx="60" cy="60" r="2.5" fill="#06B6D4" />
+          <circle cx="70" cy="60" r="2.5" fill="#06B6D4" />
+          <circle cx="60" cy="75" r="2.5" fill="#3B82F6" />
+          <circle cx="55" cy="75" r="2.5" fill="#3B82F6" />
+          
+          {/* Triangle/arrow circuit pattern */}
+          <path d="M 65 90 L 75 95 L 65 100 Z" fill="#06B6D4" opacity="0.7" />
+          <path d="M 58 95 L 63 90 L 63 100 Z" fill="#3B82F6" opacity="0.7" />
         </g>
         
-        {/* Right gear (Ops) */}
-        <g className={animated ? 'animate-spin-slow' : ''} style={{ transformOrigin: '85px 60px', animationDuration: '8s' }}>
-          <circle cx="85" cy="60" r="12" fill="#1E293B" className="dark:fill-gray-800" stroke="url(#iconGradient2)" strokeWidth="2" />
-          {/* Gear teeth */}
-          {[0, 60, 120, 180, 240, 300].map((angle) => {
-            const rad = (angle * Math.PI) / 180;
-            const x = 85 + Math.cos(rad) * 15;
-            const y = 60 + Math.sin(rad) * 15;
-            return (
-              <rect
-                key={`r${angle}`}
-                x={x - 2}
-                y={y - 4}
-                width="4"
-                height="8"
-                fill="#10B981"
-                transform={`rotate(${angle}, ${x}, ${y})`}
-                rx="1"
-              />
-            );
-          })}
-          <circle cx="85" cy="60" r="5" fill="#06B6D4" />
+        {/* Large D shape with curved right side */}
+        <path
+          d="M 70 40 L 70 160 M 70 40 C 120 40, 150 70, 150 100 C 150 130, 120 160, 70 160"
+          stroke="url(#arrowGrad)"
+          strokeWidth="8"
+          strokeLinecap="round"
+          fill="none"
+        />
+        
+        {/* Upward arrow integrated into the D */}
+        <g>
+          {/* Arrow shaft */}
+          <path 
+            d="M 100 150 L 100 80" 
+            stroke="url(#arrowGrad)" 
+            strokeWidth="12" 
+            strokeLinecap="round"
+          />
+          {/* Arrow head */}
+          <path 
+            d="M 75 105 L 100 70 L 125 105" 
+            stroke="url(#arrowGrad)" 
+            strokeWidth="12" 
+            strokeLinecap="round" 
+            strokeLinejoin="round"
+            fill="none"
+          />
+          {/* Arrow head fill */}
+          <path 
+            d="M 100 70 L 115 95 L 100 90 L 85 95 Z" 
+            fill="url(#arrowGrad)"
+          />
         </g>
-        
-        {/* Center connecting element - pipeline flow */}
-        <circle cx="60" cy="60" r="8" fill="url(#iconGradient1)" opacity="0.9" />
-        <circle cx="60" cy="60" r="3" fill="#ffffff" className="dark:fill-gray-900" />
-        
-        {/* Flow arrows */}
-        <path d="M 48 55 L 53 60 L 48 65" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" className="dark:stroke-gray-900" />
-        <path d="M 72 55 L 67 60 L 72 65" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" className="dark:stroke-gray-900" />
       </svg>
     );
   }
@@ -121,10 +117,9 @@ export default function Logo({
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#3B82F6" />
-            <stop offset="50%" stopColor="#06B6D4" />
-            <stop offset="100%" stopColor="#10B981" />
+          <linearGradient id="txtGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#06B6D4" />
+            <stop offset="100%" stopColor="#3B82F6" />
           </linearGradient>
         </defs>
         <text 
@@ -145,7 +140,7 @@ export default function Logo({
           fontFamily="system-ui, -apple-system, 'Segoe UI', sans-serif" 
           fontSize="38" 
           fontWeight="700" 
-          fill="url(#textGrad)"
+          fill="url(#txtGrad)"
           letterSpacing="3"
         >
           Duoo
@@ -159,102 +154,91 @@ export default function Logo({
     <svg 
       width={width} 
       height={height} 
-      viewBox="0 0 480 120" 
+      viewBox="0 0 520 200" 
       className={className}
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
-        <linearGradient id="fullGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#3B82F6" />
-          <stop offset="50%" stopColor="#06B6D4" />
-          <stop offset="100%" stopColor="#10B981" />
-        </linearGradient>
-        <linearGradient id="fullGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#10B981" />
-          <stop offset="50%" stopColor="#06B6D4" />
+        <linearGradient id="fullCircleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#06B6D4" />
           <stop offset="100%" stopColor="#3B82F6" />
         </linearGradient>
-        <linearGradient id="textGradFull" x1="0%" y1="0%" x2="100%" y2="0%">
+        <linearGradient id="fullArrowGrad" x1="0%" y1="100%" x2="0%" y2="0%">
           <stop offset="0%" stopColor="#3B82F6" />
-          <stop offset="50%" stopColor="#06B6D4" />
-          <stop offset="100%" stopColor="#10B981" />
+          <stop offset="100%" stopColor="#06B6D4" />
+        </linearGradient>
+        <linearGradient id="fullTextGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#06B6D4" />
+          <stop offset="100%" stopColor="#3B82F6" />
         </linearGradient>
       </defs>
       
-      {/* Icon part - Compact design */}
+      {/* Icon part */}
       <g transform="translate(10, 10)">
         {/* Outer circle */}
-        <circle cx="50" cy="50" r="48" stroke="url(#fullGrad1)" strokeWidth="2" fill="none" opacity="0.25" />
-        
-        {/* Infinity loop */}
-        <path
-          d="M 25 50 C 25 38, 33 36, 37 46 C 41 56, 41 46, 50 50 C 59 54, 59 44, 63 46 C 67 36, 75 38, 75 50 C 75 62, 67 64, 63 54 C 59 44, 59 54, 50 50 C 41 46, 41 56, 37 54 C 33 64, 25 62, 25 50 Z"
-          fill="url(#fullGrad1)"
-          opacity="0.85"
+        <circle 
+          cx="90" 
+          cy="90" 
+          r="82" 
+          fill="none" 
+          stroke="url(#fullCircleGrad)" 
+          strokeWidth="3.5"
         />
         
-        {/* Left gear (Dev) */}
-        <g>
-          <circle cx="30" cy="50" r="10" fill="#1E293B" className="dark:fill-gray-800" stroke="url(#fullGrad1)" strokeWidth="1.5" />
-          {[0, 60, 120, 180, 240, 300].map((angle) => {
-            const rad = (angle * Math.PI) / 180;
-            const x = 30 + Math.cos(rad) * 12.5;
-            const y = 50 + Math.sin(rad) * 12.5;
-            return (
-              <rect
-                key={angle}
-                x={x - 1.5}
-                y={y - 3}
-                width="3"
-                height="6"
-                fill="#06B6D4"
-                transform={`rotate(${angle}, ${x}, ${y})`}
-                rx="0.5"
-              />
-            );
-          })}
-          <circle cx="30" cy="50" r="4" fill="#3B82F6" />
+        {/* Circuit board pattern */}
+        <g opacity="0.85">
+          <path d="M 52 45 L 52 72" stroke="#06B6D4" strokeWidth="2" fill="none" />
+          <path d="M 62 48 L 62 68" stroke="#06B6D4" strokeWidth="2" fill="none" />
+          <path d="M 47 52 L 47 75" stroke="#3B82F6" strokeWidth="2" fill="none" />
+          <path d="M 47 52 L 62 52" stroke="#06B6D4" strokeWidth="2" fill="none" />
+          <path d="M 47 68 L 62 68" stroke="#3B82F6" strokeWidth="2" fill="none" />
+          <circle cx="52" cy="52" r="2" fill="#06B6D4" />
+          <circle cx="62" cy="52" r="2" fill="#06B6D4" />
+          <circle cx="52" cy="68" r="2" fill="#3B82F6" />
+          <circle cx="47" cy="68" r="2" fill="#3B82F6" />
+          <path d="M 57 82 L 67 87 L 57 92 Z" fill="#06B6D4" opacity="0.7" />
+          <path d="M 50 87 L 55 82 L 55 92 Z" fill="#3B82F6" opacity="0.7" />
         </g>
         
-        {/* Right gear (Ops) */}
+        {/* D shape */}
+        <path
+          d="M 60 35 L 60 145 M 60 35 C 105 35, 135 62, 135 90 C 135 118, 105 145, 60 145"
+          stroke="url(#fullArrowGrad)"
+          strokeWidth="7"
+          strokeLinecap="round"
+          fill="none"
+        />
+        
+        {/* Upward arrow */}
         <g>
-          <circle cx="70" cy="50" r="10" fill="#1E293B" className="dark:fill-gray-800" stroke="url(#fullGrad2)" strokeWidth="1.5" />
-          {[0, 60, 120, 180, 240, 300].map((angle) => {
-            const rad = (angle * Math.PI) / 180;
-            const x = 70 + Math.cos(rad) * 12.5;
-            const y = 50 + Math.sin(rad) * 12.5;
-            return (
-              <rect
-                key={`r${angle}`}
-                x={x - 1.5}
-                y={y - 3}
-                width="3"
-                height="6"
-                fill="#10B981"
-                transform={`rotate(${angle}, ${x}, ${y})`}
-                rx="0.5"
-              />
-            );
-          })}
-          <circle cx="70" cy="50" r="4" fill="#06B6D4" />
+          <path 
+            d="M 90 137 L 90 73" 
+            stroke="url(#fullArrowGrad)" 
+            strokeWidth="11" 
+            strokeLinecap="round"
+          />
+          <path 
+            d="M 68 95 L 90 63 L 112 95" 
+            stroke="url(#fullArrowGrad)" 
+            strokeWidth="11" 
+            strokeLinecap="round" 
+            strokeLinejoin="round"
+            fill="none"
+          />
+          <path 
+            d="M 90 63 L 103 86 L 90 82 L 77 86 Z" 
+            fill="url(#fullArrowGrad)"
+          />
         </g>
-        
-        {/* Center pipeline connector */}
-        <circle cx="50" cy="50" r="6.5" fill="url(#fullGrad1)" opacity="0.9" />
-        <circle cx="50" cy="50" r="2.5" fill="#ffffff" className="dark:fill-gray-900" />
-        
-        {/* Flow indicators */}
-        <path d="M 40 47 L 44 50 L 40 53" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" className="dark:stroke-gray-900" />
-        <path d="M 60 47 L 56 50 L 60 53" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" className="dark:stroke-gray-900" />
       </g>
       
       {/* Text part */}
-      <g transform="translate(135, 0)">
+      <g transform="translate(220, 0)">
         <text 
           x="0" 
-          y="54" 
+          y="95" 
           fontFamily="system-ui, -apple-system, 'Segoe UI', sans-serif" 
-          fontSize="44" 
+          fontSize="58" 
           fontWeight="700" 
           fill="currentColor"
           className="dark:fill-white"
@@ -264,26 +248,15 @@ export default function Logo({
         </text>
         <text 
           x="0" 
-          y="102" 
+          y="165" 
           fontFamily="system-ui, -apple-system, 'Segoe UI', sans-serif" 
-          fontSize="44" 
+          fontSize="58" 
           fontWeight="700" 
-          fill="url(#textGradFull)"
-          letterSpacing="3.5"
+          fill="url(#fullTextGrad)"
+          letterSpacing="4"
         >
           Duoo
         </text>
-        
-        {/* Accent underline */}
-        <line 
-          x1="0" 
-          y1="110" 
-          x2="170" 
-          y2="110" 
-          stroke="url(#textGradFull)" 
-          strokeWidth="3" 
-          strokeLinecap="round"
-        />
       </g>
     </svg>
   );

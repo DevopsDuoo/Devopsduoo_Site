@@ -94,12 +94,12 @@ Export logo for:
 ```
 
 ### Symbolism
-- **Two Gears**: Left gear = **Dev** (Development), Right gear = **Ops** (Operations)  
-  Rotating gears represent the continuous, interconnected work of development and operations teams
-- **Infinity Loop**: Endless CI/CD pipeline - the core principle of DevOps automation
-- **Center Hub**: Integration point where code meets infrastructure
-- **Flow Arrows**: Bi-directional data flow between Dev and Ops
-- **Gradient**: Blue (Development) → Cyan (Cloud Infrastructure) → Green (Successful Deployment)
+- **"D" Badge**: Bold letter representing both "DevOps" and "Duoo" - unified brand identity
+- **Circuit Board Traces**: Technology infrastructure, automation pipelines, and digital workflows
+- **Upward Arrow**: Continuous improvement, growth trajectory, and successful deployments
+- **Circular Frame**: Complete DevOps lifecycle, continuous integration/deployment cycle
+- **Gradient**: Cyan (Cloud Infrastructure) → Blue (Stable Technology)
+- **Integrated Design**: Arrow flows through the D, showing seamless automation
 
 ### Typography
 - **Font**: Bold, sans-serif

@@ -93,13 +93,32 @@ Export logo for:
 --success-green: #10B981;
 ```
 
-### Symbolism
-- **Two Interlocking Arrows**: Represent Dev + Ops working together, forming the letter "D"
-- **Upward Direction**: Continuous improvement, growth, and successful deployments
-- **Interlocking Design**: Seamless integration and collaboration between teams
-- **Tech Accents**: Circuit-like lines and nodes showing digital infrastructure
-- **Gradient Flow**: Deep blue (Enterprise) → Bright blue (Innovation) → Neon teal (Cloud/Future)
-- **Geometric Precision**: Sharp lines represent automation, efficiency, and modern DevOps practices
+### Symbolism - Industry DevOps Standards
+
+**Hexagon Container**
+- Represents Docker/Kubernetes container architecture
+- Industry-standard shape used in containerization logos
+- Symbolizes encapsulation and microservices
+
+**Infinity Loop (∞)**
+- CI/CD continuous integration and deployment cycle
+- Never-ending automation pipeline
+- Core principle of DevOps methodology
+
+**Bidirectional Arrows**
+- Pipeline flow: Code → Build → Test → Deploy
+- Feedback loops: Monitor → Improve → Iterate
+- Seamless collaboration between Dev and Ops
+
+**Three Node Dots**
+- Microservices architecture
+- Distributed systems and scalability
+- Multi-environment deployments (Dev, Staging, Prod)
+
+**Gradient Colors**
+- **Sky Blue** (#0EA5E9): Cloud infrastructure (AWS, Azure, GCP)
+- **Cyan** (#06B6D4): Automation & CI/CD tools (Jenkins, GitLab, GitHub Actions)
+- **Green** (#10B981): Successful deployments, monitoring & health checks
 
 ### Typography
 - **Font**: Bold, sans-serif

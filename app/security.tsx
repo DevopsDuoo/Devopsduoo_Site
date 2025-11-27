@@ -45,27 +45,12 @@ export default function SecurityProtection() {
       return false;
     };
 
-    // Detect DevTools
-    const detectDevTools = () => {
-      const threshold = 160;
-      const widthThreshold = window.outerWidth - window.innerWidth > threshold;
-      const heightThreshold = window.outerHeight - window.innerHeight > threshold;
-      
-      if (widthThreshold || heightThreshold) {
-        console.clear();
-        document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;"><h1>⚠️ Developer Tools Detected</h1></div>';
-      }
-    };
-
     // Add event listeners
     document.addEventListener('contextmenu', handleContextMenu);
     document.addEventListener('keydown', handleKeyDown);
     document.addEventListener('selectstart', handleSelectStart);
     document.addEventListener('dragstart', handleDragStart);
     document.addEventListener('copy', handleCopy);
-
-    // Check for DevTools periodically
-    const devToolsInterval = setInterval(detectDevTools, 1000);
 
     // Add watermark to console
     console.log('%c⚠️ WARNING', 'color: red; font-size: 40px; font-weight: bold;');
@@ -80,7 +65,6 @@ export default function SecurityProtection() {
       document.removeEventListener('selectstart', handleSelectStart);
       document.removeEventListener('dragstart', handleDragStart);
       document.removeEventListener('copy', handleCopy);
-      clearInterval(devToolsInterval);
     };
   }, []);
 

@@ -48,11 +48,11 @@ export default function Navbar() {
             >
               {/* Desktop - Full Logo */}
               <div className="hidden md:block">
-                <Logo variant="full" width={180} height={50} />
+                <Logo variant="full" width={220} height={60} />
               </div>
               {/* Mobile - Icon Only */}
               <div className="md:hidden">
-                <Logo variant="icon" height={40} />
+                <Logo variant="icon" height={50} />
               </div>
             </motion.div>
           </Link>

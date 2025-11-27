@@ -33,7 +33,7 @@ export default function Footer() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
             >
-              <Logo variant="full" width={160} height={45} animated={true} />
+              <Logo variant="full" width={200} height={55} animated={true} />
             </motion.div>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
               Empowering businesses with cutting-edge DevOps solutions.

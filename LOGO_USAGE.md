@@ -101,10 +101,12 @@ import Logo from '@/components/Logo';
 - **Green**: `#10B981` - Growth, Success
 
 ### Symbolism
-- **Circle**: Continuous integration/deployment cycle
-- **Infinity Symbol**: Endless DevOps pipeline
-- **Two Dots**: "Duoo" - Partnership, Collaboration
-- **Gradient**: Modern, Dynamic, Progressive
+- **Two Gears**: Left gear = **Dev** (Development), Right gear = **Ops** (Operations)
+- **Infinity Loop**: Continuous integration and deployment - the endless DevOps cycle
+- **Center Connector**: Pipeline hub where Dev and Ops meet and integrate
+- **Flow Arrows**: Data/code flowing between development and operations
+- **Gradient Colors**: Blue (Code) → Cyan (Cloud) → Green (Deployment Success)
+- **"Duoo"**: Partnership of two essential forces working in harmony
 
 ## 🌓 Dark Mode Support
 

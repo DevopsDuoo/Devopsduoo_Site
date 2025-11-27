@@ -94,12 +94,12 @@ Export logo for:
 ```
 
 ### Symbolism
-- **"D" Badge**: Bold letter representing both "DevOps" and "Duoo" - unified brand identity
-- **Circuit Board Traces**: Technology infrastructure, automation pipelines, and digital workflows
-- **Upward Arrow**: Continuous improvement, growth trajectory, and successful deployments
-- **Circular Frame**: Complete DevOps lifecycle, continuous integration/deployment cycle
-- **Gradient**: Cyan (Cloud Infrastructure) → Blue (Stable Technology)
-- **Integrated Design**: Arrow flows through the D, showing seamless automation
+- **Two Interlocking Arrows**: Represent Dev + Ops working together, forming the letter "D"
+- **Upward Direction**: Continuous improvement, growth, and successful deployments
+- **Interlocking Design**: Seamless integration and collaboration between teams
+- **Tech Accents**: Circuit-like lines and nodes showing digital infrastructure
+- **Gradient Flow**: Deep blue (Enterprise) → Bright blue (Innovation) → Neon teal (Cloud/Future)
+- **Geometric Precision**: Sharp lines represent automation, efficiency, and modern DevOps practices
 
 ### Typography
 - **Font**: Bold, sans-serif

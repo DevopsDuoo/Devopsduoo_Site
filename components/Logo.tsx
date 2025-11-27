@@ -16,85 +16,63 @@ export default function Logo({
   animated = false
 }: LogoProps) {
   
-  // Icon variant - Circular badge with D and upward arrow
+  // Icon variant - Two interlocking arrows forming D
   if (variant === 'icon') {
     return (
       <svg 
         width={height} 
         height={height} 
-        viewBox="0 0 200 200" 
+        viewBox="0 0 100 100" 
         className={className}
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          <linearGradient id="circleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#06B6D4" />
-            <stop offset="100%" stopColor="#3B82F6" />
-          </linearGradient>
-          <linearGradient id="dGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#3B82F6" />
-            <stop offset="50%" stopColor="#06B6D4" />
-            <stop offset="100%" stopColor="#3B82F6" />
+          <linearGradient id="iconGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#1e3a8a" />
+            <stop offset="50%" stopColor="#3b82f6" />
+            <stop offset="100%" stopColor="#06b6d4" />
           </linearGradient>
         </defs>
         
-        {/* Outer circle with gradient border */}
-        <circle 
-          cx="100" 
-          cy="100" 
-          r="90" 
-          fill="none" 
-          stroke="url(#circleGrad)" 
-          strokeWidth="4"
-        />
-        
-        {/* D shape outline - left vertical bar and right curve */}
+        {/* Left upward arrow forming left side of D */}
         <path
-          d="M 65 50 L 65 150"
-          stroke="url(#dGrad)"
-          strokeWidth="10"
-          strokeLinecap="round"
-          fill="none"
-        />
-        <path
-          d="M 65 50 C 130 50, 145 80, 145 100 C 145 120, 130 150, 65 150"
-          stroke="url(#dGrad)"
-          strokeWidth="10"
-          strokeLinecap="round"
-          fill="none"
-        />
-        
-        {/* Circuit board pattern on LEFT side */}
-        <g opacity="0.9">
-          {/* Vertical lines */}
-          <line x1="45" y1="70" x2="45" y2="90" stroke="#06B6D4" strokeWidth="2.5" />
-          <line x1="52" y1="65" x2="52" y2="85" stroke="#3B82F6" strokeWidth="2.5" />
-          <line x1="38" y1="75" x2="38" y2="95" stroke="#06B6D4" strokeWidth="2.5" />
-          
-          {/* Horizontal connecting lines */}
-          <line x1="38" y1="75" x2="52" y2="75" stroke="#06B6D4" strokeWidth="2" />
-          <line x1="38" y1="85" x2="52" y2="85" stroke="#3B82F6" strokeWidth="2" />
-          
-          {/* Circuit nodes/dots */}
-          <circle cx="45" cy="75" r="2.5" fill="#06B6D4" />
-          <circle cx="52" cy="75" r="2.5" fill="#06B6D4" />
-          <circle cx="45" cy="85" r="2.5" fill="#3B82F6" />
-          <circle cx="38" cy="85" r="2.5" fill="#3B82F6" />
-          
-          {/* Small triangular elements */}
-          <path d="M 42 100 L 48 103 L 42 106 Z" fill="#06B6D4" />
-          <path d="M 50 98 L 50 108 L 55 103 Z" fill="#3B82F6" />
-        </g>
-        
-        {/* Upward chevron/caret arrow inside the D */}
-        <path
-          d="M 80 110 L 105 75 L 130 110"
-          stroke="url(#dGrad)"
-          strokeWidth="12"
+          d="M 25 70 L 25 30 L 35 40 M 25 30 L 15 40"
+          stroke="url(#iconGrad)"
+          strokeWidth="5"
           strokeLinecap="round"
           strokeLinejoin="round"
           fill="none"
         />
+        <path
+          d="M 25 70 L 25 35"
+          stroke="url(#iconGrad)"
+          strokeWidth="6"
+          strokeLinecap="round"
+          fill="none"
+        />
+        
+        {/* Right upward arrow forming right curve of D */}
+        <path
+          d="M 40 70 L 40 30 L 50 40 M 40 30 L 30 40"
+          stroke="url(#iconGrad)"
+          strokeWidth="5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+        />
+        <path
+          d="M 40 70 C 65 70, 75 60, 75 50 C 75 40, 65 30, 40 30"
+          stroke="url(#iconGrad)"
+          strokeWidth="6"
+          strokeLinecap="round"
+          fill="none"
+        />
+        
+        {/* Tech accent lines */}
+        <line x1="28" y1="55" x2="37" y2="55" stroke="#06b6d4" strokeWidth="2" opacity="0.6" />
+        <line x1="30" y1="60" x2="35" y2="60" stroke="#3b82f6" strokeWidth="2" opacity="0.6" />
+        <circle cx="32" cy="55" r="1.5" fill="#06b6d4" />
+        <circle cx="32" cy="60" r="1.5" fill="#3b82f6" />
       </svg>
     );
   }
@@ -105,37 +83,37 @@ export default function Logo({
       <svg 
         width={width} 
         height={height} 
-        viewBox="0 0 320 90" 
+        viewBox="0 0 300 80" 
         className={className}
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          <linearGradient id="txtGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#3B82F6" />
-            <stop offset="50%" stopColor="#06B6D4" />
-            <stop offset="100%" stopColor="#3B82F6" />
+          <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#1e3a8a" />
+            <stop offset="50%" stopColor="#3b82f6" />
+            <stop offset="100%" stopColor="#06b6d4" />
           </linearGradient>
         </defs>
         <text 
           x="5" 
-          y="38" 
-          fontFamily="system-ui, -apple-system, 'Segoe UI', sans-serif" 
-          fontSize="38" 
+          y="35" 
+          fontFamily="'Inter', system-ui, -apple-system, sans-serif" 
+          fontSize="36" 
           fontWeight="700" 
           fill="currentColor"
           className="dark:fill-white"
-          letterSpacing="1"
+          letterSpacing="0"
         >
           DevOps
         </text>
         <text 
           x="5" 
-          y="78" 
-          fontFamily="system-ui, -apple-system, 'Segoe UI', sans-serif" 
-          fontSize="38" 
+          y="68" 
+          fontFamily="'Inter', system-ui, -apple-system, sans-serif" 
+          fontSize="36" 
           fontWeight="700" 
-          fill="url(#txtGrad)"
-          letterSpacing="3"
+          fill="url(#textGrad)"
+          letterSpacing="2"
         >
           Duoo
         </text>
@@ -148,106 +126,98 @@ export default function Logo({
     <svg 
       width={width} 
       height={height} 
-      viewBox="0 0 520 200" 
+      viewBox="0 0 400 100" 
       className={className}
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
-        <linearGradient id="fullCircleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#06B6D4" />
-          <stop offset="100%" stopColor="#3B82F6" />
-        </linearGradient>
-        <linearGradient id="fullDGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#3B82F6" />
-          <stop offset="50%" stopColor="#06B6D4" />
-          <stop offset="100%" stopColor="#3B82F6" />
-        </linearGradient>
-        <linearGradient id="fullTextGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#3B82F6" />
-          <stop offset="50%" stopColor="#06B6D4" />
-          <stop offset="100%" stopColor="#3B82F6" />
+        <linearGradient id="fullGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#1e3a8a" />
+          <stop offset="50%" stopColor="#3b82f6" />
+          <stop offset="100%" stopColor="#06b6d4" />
         </linearGradient>
       </defs>
       
-      {/* Icon part */}
+      {/* Icon part - Two interlocking arrows forming D */}
       <g transform="translate(10, 10)">
-        {/* Outer circle */}
-        <circle 
-          cx="90" 
-          cy="90" 
-          r="82" 
-          fill="none" 
-          stroke="url(#fullCircleGrad)" 
-          strokeWidth="3.5"
-        />
-        
-        {/* D shape - vertical bar and curved side */}
+        {/* Left arrow */}
         <path
-          d="M 58 45 L 58 135"
-          stroke="url(#fullDGrad)"
-          strokeWidth="9"
-          strokeLinecap="round"
-          fill="none"
-        />
-        <path
-          d="M 58 45 C 115 45, 130 70, 130 90 C 130 110, 115 135, 58 135"
-          stroke="url(#fullDGrad)"
-          strokeWidth="9"
-          strokeLinecap="round"
-          fill="none"
-        />
-        
-        {/* Circuit board pattern on left side */}
-        <g opacity="0.85">
-          <line x1="40" y1="63" x2="40" y2="80" stroke="#06B6D4" strokeWidth="2.5" />
-          <line x1="47" y1="58" x2="47" y2="76" stroke="#3B82F6" strokeWidth="2.5" />
-          <line x1="33" y1="67" x2="33" y2="85" stroke="#06B6D4" strokeWidth="2.5" />
-          <line x1="33" y1="67" x2="47" y2="67" stroke="#06B6D4" strokeWidth="2" />
-          <line x1="33" y1="76" x2="47" y2="76" stroke="#3B82F6" strokeWidth="2" />
-          <circle cx="40" cy="67" r="2.5" fill="#06B6D4" />
-          <circle cx="47" cy="67" r="2.5" fill="#06B6D4" />
-          <circle cx="40" cy="76" r="2.5" fill="#3B82F6" />
-          <circle cx="33" cy="76" r="2.5" fill="#3B82F6" />
-          <path d="M 38 90 L 43 93 L 38 96 Z" fill="#06B6D4" />
-          <path d="M 45 88 L 45 98 L 50 93 Z" fill="#3B82F6" />
-        </g>
-        
-        {/* Upward chevron arrow */}
-        <path
-          d="M 72 100 L 94 68 L 116 100"
-          stroke="url(#fullDGrad)"
-          strokeWidth="11"
+          d="M 20 56 L 20 24 L 28 32 M 20 24 L 12 32"
+          stroke="url(#fullGrad)"
+          strokeWidth="4"
           strokeLinecap="round"
           strokeLinejoin="round"
           fill="none"
         />
+        <path
+          d="M 20 56 L 20 28"
+          stroke="url(#fullGrad)"
+          strokeWidth="5"
+          strokeLinecap="round"
+          fill="none"
+        />
+        
+        {/* Right arrow with curve */}
+        <path
+          d="M 32 56 L 32 24 L 40 32 M 32 24 L 24 32"
+          stroke="url(#fullGrad)"
+          strokeWidth="4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          fill="none"
+        />
+        <path
+          d="M 32 56 C 52 56, 60 48, 60 40 C 60 32, 52 24, 32 24"
+          stroke="url(#fullGrad)"
+          strokeWidth="5"
+          strokeLinecap="round"
+          fill="none"
+        />
+        
+        {/* Tech accent lines */}
+        <line x1="22" y1="44" x2="30" y2="44" stroke="#06b6d4" strokeWidth="1.5" opacity="0.5" />
+        <line x1="24" y1="48" x2="28" y2="48" stroke="#3b82f6" strokeWidth="1.5" opacity="0.5" />
+        <circle cx="26" cy="44" r="1" fill="#06b6d4" />
+        <circle cx="26" cy="48" r="1" fill="#3b82f6" />
       </g>
       
       {/* Text part */}
-      <g transform="translate(220, 0)">
+      <g transform="translate(95, 0)">
         <text 
           x="0" 
-          y="95" 
-          fontFamily="system-ui, -apple-system, 'Segoe UI', sans-serif" 
-          fontSize="58" 
+          y="42" 
+          fontFamily="'Inter', system-ui, -apple-system, sans-serif" 
+          fontSize="32" 
           fontWeight="700" 
           fill="currentColor"
           className="dark:fill-white"
-          letterSpacing="1"
+          letterSpacing="0.5"
         >
           DevOps
         </text>
         <text 
           x="0" 
-          y="165" 
-          fontFamily="system-ui, -apple-system, 'Segoe UI', sans-serif" 
-          fontSize="58" 
+          y="73" 
+          fontFamily="'Inter', system-ui, -apple-system, sans-serif" 
+          fontSize="32" 
           fontWeight="700" 
-          fill="url(#fullTextGrad)"
-          letterSpacing="4"
+          fill="url(#fullGrad)"
+          letterSpacing="2"
         >
           Duoo
         </text>
+        
+        {/* Subtle underline accent */}
+        <line 
+          x1="0" 
+          y1="78" 
+          x2="120" 
+          y2="78" 
+          stroke="url(#fullGrad)" 
+          strokeWidth="2" 
+          strokeLinecap="round"
+          opacity="0.4"
+        />
       </g>
     </svg>
   );

@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { FaLinkedin, FaGithub, FaTwitter, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+import Logo from './Logo';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -26,16 +27,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
           <div>
-            <motion.h3
-              className="text-2xl font-bold mb-4"
+            <motion.div
+              className="mb-4"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
             >
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-accent-600">
-                DevOps Duoo
-              </span>
-            </motion.h3>
+              <Logo variant="full" width={160} height={45} animated={true} />
+            </motion.div>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
               Empowering businesses with cutting-edge DevOps solutions.
             </p>

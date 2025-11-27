@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import ThemeToggle from './ThemeToggle';
+import Logo from './Logo';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,15 +42,18 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/">
             <motion.div
-              className="flex items-center gap-2 cursor-pointer"
+              className="flex items-center cursor-pointer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <motion.div className="text-3xl font-bold">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-accent-600">
-                  DevOps Duoo
-                </span>
-              </motion.div>
+              {/* Desktop - Full Logo */}
+              <div className="hidden md:block">
+                <Logo variant="full" width={180} height={50} />
+              </div>
+              {/* Mobile - Icon Only */}
+              <div className="md:hidden">
+                <Logo variant="icon" height={40} />
+              </div>
             </motion.div>
           </Link>
 

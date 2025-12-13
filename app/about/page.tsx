@@ -28,11 +28,11 @@ export default function AboutPage() {
 
   const teamMembers = [
     {
-      name: 'Chandrashekhar Patil',
-      role: 'Founder & DevOps Architect',
+      name: 'The Architect',
+      role: 'Founder & Chief Strategist',
       experience: '5+ Years',
       image: '/team/member1.jpg',
-      bio: 'Certified DevOps expert specializing in cloud infrastructure and automation.',
+      bio: 'A visionary technologist who prefers to let the infrastructure speak. Specializes in cloud architecture and distributed systems at scale.',
       skills: [
         { name: 'AWS', level: 95, icon: FaAws },
         { name: 'Kubernetes', level: 90, icon: SiKubernetes },
@@ -40,9 +40,9 @@ export default function AboutPage() {
         { name: 'Docker', level: 92, icon: FaDocker },
       ],
       certifications: [
-        'AWS Certified Solutions Architect',
+        'Multiple Cloud Architecture Certifications',
         'Kubernetes Administrator (CKA)',
-        'Terraform Associate',
+        'Infrastructure as Code Specialist',
       ],
       social: {
         linkedin: '#',
@@ -51,11 +51,11 @@ export default function AboutPage() {
       }
     },
     {
-      name: 'Hrushikesh Potbhare',
-      role: 'Co-Founder & DevOps Engineer',
+      name: 'The Engineer',
+      role: 'Co-Founder & Automation Expert',
       experience: '5+ Years',
       image: '/team/member2.jpg',
-      bio: 'Expert in CI/CD pipelines, monitoring & Logging, and infrastructure automation.',
+      bio: 'The silent force behind seamless deployments. Believes in automation-first philosophy and building systems that run themselves.',
       skills: [
         { name: 'Jenkins', level: 93, icon: FaJenkins },
         { name: 'Ansible', level: 90, icon: SiAnsible },
@@ -63,9 +63,9 @@ export default function AboutPage() {
         { name: 'Docker', level: 91, icon: FaDocker },
       ],
       certifications: [
-        'Jenkins Certified Engineer',
-        'Red Hat Certified Specialist',
-        'AWS Certified DevOps Engineer',
+        'CI/CD Pipeline Specialist',
+        'Advanced Monitoring & Observability',
+        'DevOps Engineering Professional',
       ],
       social: {
         linkedin: '#',
@@ -154,17 +154,17 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4 text-gray-700 dark:text-gray-300">
                 <p className="text-base sm:text-lg">
-                  Founded by two passionate DevOps engineers with over 5 years of experience each, 
-                  DevOps Duoo was born from a vision to simplify and accelerate digital transformation 
-                  for businesses of all sizes.
+                  Founded by two passionate DevOps professionals with over 5 years of experience each, 
+                  DevOps Duoo emerged from a vision to revolutionize how businesses approach infrastructure 
+                  and automation—without the spotlight, just pure technical excellence.
                 </p>
                 <p className="text-base sm:text-lg">
-                  We combine deep technical expertise with practical, hands-on experience to deliver 
-                  solutions that not only meet but exceed our clients&apos; expectations.
+                  Our founders believe in letting their work define them. Anonymous by choice, legendary by results. 
+                  They combine deep technical mastery with battle-tested experience to build systems that don&apos;t just work—they thrive.
                 </p>
                 <p className="text-base sm:text-lg">
-                  Our mission is to bridge the gap between development and operations, enabling businesses 
-                  to deliver software faster, more reliably, and with greater efficiency.
+                  The mission: Create invisible infrastructure that powers visible success. Bridge gaps, 
+                  automate complexity, and deliver excellence—all while staying behind the scenes where the real magic happens.
                 </p>
               </div>
             </motion.div>
@@ -214,10 +214,10 @@ export default function AboutPage() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
-              Meet Our Founders
+              The Founding Team
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400">
-              Certified DevOps experts passionate about innovation
+              Two visionaries who believe code speaks louder than names
             </p>
           </motion.div>
 

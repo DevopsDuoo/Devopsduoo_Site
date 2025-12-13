@@ -40,14 +40,18 @@ export default function Footer() {
             </p>
             <div className="flex gap-4">
               <motion.a
-                href="#"
+                href="https://www.linkedin.com/company/devops-duoo"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.2, y: -2 }}
                 className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
               >
                 <FaLinkedin size={24} />
               </motion.a>
               <motion.a
-                href="#"
+                href="https://github.com/DevopsDuoo"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.2, y: -2 }}
                 className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
               >
@@ -107,21 +111,21 @@ export default function Footer() {
             <ul className="space-y-3 text-gray-600 dark:text-gray-400">
               <li className="flex items-start gap-2">
                 <FaEnvelope className="mt-1 text-primary-600 dark:text-primary-400" />
-                <a href="mailto:hello@devopsduoo.com" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-                  hello@devopsduoo.com
+                <a href="mailto:devopsduoo@gmail.com" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                  devopsduoo@gmail.com
                 </a>
               </li>
               <li className="flex items-start gap-2">
                 <FaPhone className="mt-1 text-primary-600 dark:text-primary-400" />
-                <a href="tel:+1234567890" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-                  +1 (234) 567-890
+                <a href="tel:+918788202975" className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                  +91 8788202975
                 </a>
               </li>
               <li className="flex items-start gap-2">
                 <FaMapMarkerAlt className="mt-1 text-primary-600 dark:text-primary-400" />
                 <span>
-                  123 DevOps Street<br />
-                  Tech City, TC 12345
+                  Shivneri Plaza, Gujrat Colony<br />
+                  Kothrud, Pune, Maharashtra 411038
                 </span>
               </li>
             </ul>

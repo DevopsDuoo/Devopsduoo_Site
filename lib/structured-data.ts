@@ -5,11 +5,11 @@ export const localBusinessSchema = {
   "image": "https://devopsduoo.com/logo.png",
   "@id": "https://devopsduoo.com",
   "url": "https://devopsduoo.com",
-  "telephone": "+91-XXX-XXX-XXXX", // Update with actual phone
+  "telephone": "+918788202975",
   "email": "devopsduoo@gmail.com",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Shivneri Plaza, Kothrud",
+    "streetAddress": "Shivneri Plaza, Gujrat Colony, Kothrud",
     "addressLocality": "Pune",
     "addressRegion": "Maharashtra",
     "postalCode": "411038",

@@ -228,8 +228,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="text-gray-900 dark:text-white font-semibold mb-1">Email</h3>
-                    <a href="mailto:hello@devopsduoo.com" className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-                      hello@devopsduoo.com
+                    <a href="mailto:devopsduoo@gmail.com" className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                      devopsduoo@gmail.com
                     </a>
                   </div>
                 </motion.div>
@@ -243,8 +243,8 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="text-gray-900 dark:text-white font-semibold mb-1">Phone</h3>
-                    <a href="tel:+1234567890" className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
-                      +91 (234) 567-890
+                    <a href="tel:+918788202975" className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                      +91 8788202975
                     </a>
                   </div>
                 </motion.div>

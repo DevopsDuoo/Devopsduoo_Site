@@ -380,22 +380,23 @@ export default function Home() {
             >
               <Link href="/contact">
                 <motion.button
-                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-full text-base sm:text-lg font-semibold shadow-lg"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-full text-base sm:text-lg font-semibold shadow-lg flex items-center justify-center gap-2"
                   whileHover={{ scale: 1.03, boxShadow: "0 20px 40px rgba(99, 102, 241, 0.3)" }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ duration: 0.2 }}
                 >
-                  Get Started
+                  Book Free Consultation
+                  <FaRocket className="text-lg" />
                 </motion.button>
               </Link>
-              <Link href="/about">
+              <Link href="/services">
                 <motion.button
-                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-transparent border-2 border-gray-900 dark:border-white text-gray-900 dark:text-white rounded-full text-base sm:text-lg font-semibold"
-                  whileHover={{ scale: 1.03, backgroundColor: "rgba(99, 102, 241, 0.05)" }}
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-transparent border-2 border-gray-900 dark:border-white text-gray-900 dark:text-white rounded-full text-base sm:text-lg font-semibold hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-gray-900 transition-colors"
+                  whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ duration: 0.2 }}
                 >
-                  Learn More
+                  Explore Services
                 </motion.button>
               </Link>
             </motion.div>
@@ -548,30 +549,64 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-12 sm:py-16 md:py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-r from-primary-600 to-accent-600">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
+            className="text-center"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 px-4">
+            <motion.div
+              className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full mb-6"
+              whileHover={{ scale: 1.1, rotate: 360 }}
+              transition={{ duration: 0.6 }}
+            >
+              <FaRocket className="text-3xl text-white" />
+            </motion.div>
+            
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6 px-4">
               Ready to Transform Your Infrastructure?
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-6 sm:mb-8 px-4">
-              Let's discuss how we can help accelerate your DevOps journey
+            <p className="text-base sm:text-lg md:text-xl text-white/90 mb-8 sm:mb-10 px-4 max-w-3xl mx-auto">
+              Join 50+ successful projects. Let's accelerate your DevOps journey with a free consultation—no commitments, just expert insights.
             </p>
-            <Link href="/contact">
-              <motion.button
-                className="px-8 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-primary-600 to-accent-600 text-white rounded-full text-lg sm:text-xl font-semibold shadow-2xl"
-                whileHover={{ scale: 1.05, boxShadow: "0 25px 50px rgba(99, 102, 241, 0.4)" }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ duration: 0.2 }}
-              >
-                Contact Us Today
-              </motion.button>
-            </Link>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact">
+                <motion.button
+                  className="px-8 sm:px-10 py-4 sm:py-5 bg-white text-primary-600 rounded-full text-lg sm:text-xl font-semibold shadow-2xl flex items-center justify-center gap-3 hover:bg-gray-50 transition-colors"
+                  whileHover={{ scale: 1.05, boxShadow: "0 25px 50px rgba(255, 255, 255, 0.3)" }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  Schedule Free Consultation
+                  <FaRocket />
+                </motion.button>
+              </Link>
+              
+              <a href="tel:+918788202975">
+                <motion.button
+                  className="px-8 sm:px-10 py-4 sm:py-5 bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 rounded-full text-lg sm:text-xl font-semibold hover:bg-white/20 transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  Call Us Now
+                </motion.button>
+              </a>
+            </div>
+            
+            <motion.p
+              className="text-sm text-white/70 mt-6"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              ⚡ Average response time: Under 4 hours
+            </motion.p>
           </motion.div>
         </div>
       </section>

@@ -564,22 +564,55 @@ export default function AboutPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
+            <motion.div
+              className="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full mb-6"
+              whileHover={{ scale: 1.1, rotate: 15 }}
+              transition={{ duration: 0.3 }}
+            >
+              <FaRocket className="text-3xl text-white" />
+            </motion.div>
+
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 sm:mb-6">
-              Ready to Transform Your Infrastructure?
+              Let's Build Something Extraordinary
             </h2>
             
-            <p className="text-base sm:text-lg md:text-xl text-white/90 mb-6 sm:mb-8">
-              Let&apos;s discuss how we can help accelerate your DevOps journey
+            <p className="text-base sm:text-lg md:text-xl text-white/90 mb-8 sm:mb-10 max-w-2xl mx-auto">
+              Partner with the team that keeps identities mysterious but results legendary. 
+              Ready to experience DevOps excellence?
             </p>
             
-            <motion.a
-              href="/contact"
-              className="inline-block px-8 sm:px-10 py-3 sm:py-4 bg-white text-primary-600 font-semibold rounded-full shadow-2xl hover:shadow-xl transition-all text-base sm:text-lg"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact">
+                <motion.button
+                  className="px-8 sm:px-10 py-3 sm:py-4 bg-white text-primary-600 font-semibold rounded-full shadow-2xl hover:shadow-xl transition-all text-base sm:text-lg flex items-center justify-center gap-2"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Start Your Project
+                  <FaRocket />
+                </motion.button>
+              </Link>
+              
+              <Link href="/services">
+                <motion.button
+                  className="px-8 sm:px-10 py-3 sm:py-4 bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 font-semibold rounded-full hover:bg-white/20 transition-all text-base sm:text-lg"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  View Our Services
+                </motion.button>
+              </Link>
+            </div>
+
+            <motion.p
+              className="text-sm text-white/70 mt-6"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
             >
-              Get In Touch
-            </motion.a>
+              💬 Free 30-minute consultation • No strings attached
+            </motion.p>
           </motion.div>
         </div>
       </section>

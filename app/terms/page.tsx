@@ -263,14 +263,14 @@ export default function TermsPage() {
 
                 <div className="space-y-4">
                   {section.content.map((item, itemIndex) => (
-                    <div key={itemIndex} className={item.subtitle ? 'ml-4' : ''}>
-                      {item.subtitle && (
+                    <div key={itemIndex} className={'subtitle' in item && item.subtitle ? 'ml-4' : ''}>
+                      {'subtitle' in item && item.subtitle && (
                         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
                           <span className="w-2 h-2 bg-primary-500 rounded-full"></span>
                           {item.subtitle}
                         </h3>
                       )}
-                      <p className={`text-gray-700 dark:text-gray-300 leading-relaxed ${item.subtitle ? 'ml-4' : ''}`}>
+                      <p className={`text-gray-700 dark:text-gray-300 leading-relaxed ${'subtitle' in item && item.subtitle ? 'ml-4' : ''}`}>
                         {item.text}
                       </p>
                     </div>
